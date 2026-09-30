@@ -1,6 +1,6 @@
 # Folder structure
 
-Generated: 2026-09-30T17:11:49.078Z
+Generated: 2026-09-30T17:17:13.762Z
 Root: `the-developer`
 
 ```
@@ -571,6 +571,10 @@ the-developer/
   agents/
     the-developer.md
   assets/
+    readme/
+      hero.svg
+      section-install.svg
+      workflow.svg
     logo.svg
   commands/
     brainstorming.md
