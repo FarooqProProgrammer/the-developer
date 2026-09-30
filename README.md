@@ -48,6 +48,7 @@ codegraph init
 | `/code-review` | Correctness review |
 | `/browser-test` | agent-browser QA |
 | `/codebase-design` | Deep modules / seams |
+| `/nodejs-backend-patterns` | Node.js API / backend patterns |
 | `/diagnose-bug` | Hard-bug diagnosis loop |
 | `/tdd` | Test-first red-green-refactor |
 | `/prototype` | Throwaway prototype before change |
@@ -84,6 +85,7 @@ Publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish
 - [CodeGraph](https://github.com/colbymchenry/codegraph)
 - [agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)
 - [vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)
+- [nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)
 - [codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)
 - [diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)
 - [tdd](https://www.skills.sh/mattpocock/skills/tdd)

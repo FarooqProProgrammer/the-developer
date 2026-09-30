@@ -31,6 +31,18 @@
         "command": "node ./scripts/codegraph-sync.js",
         "timeout": 30
       }
+    ],
+    "stop": [
+      {
+        "command": "node ./scripts/regenerate-folder-structure.js",
+        "timeout": 30
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "node ./scripts/regenerate-folder-structure.js",
+        "timeout": 30
+      }
     ]
   }
 }

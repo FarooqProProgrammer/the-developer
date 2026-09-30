@@ -63,6 +63,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Grill / stress-test a plan or design | `grill-me` → then `grilling` |
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
 | React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |
+| Node.js backend / API / middleware / auth / DB service | `nodejs-backend-patterns` |
 | Deep modules / seams / interface design | `codebase-design` |
 | Extract modules → actionable checklist | `extract-modules-checklist` |
 | Hard bug (feedback loop / bisection) | `diagnosing-bugs` |

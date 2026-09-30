@@ -33,8 +33,8 @@ Or run:
 | Component | Contents |
 |-----------|----------|
 | **Rules** | Intent router, coding standards, Ponytail ladder, CodeGraph, SEO public pages, React best-practices gate, git branch safety, hallmark-frontend, frontend-mockup-first, module-checklist |
-| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, ui-case-studies, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, codebase-design, extract-modules-checklist, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo (**optional**), extract-meaning-full-insight, document-to-flowchart, claude-delegate |
-| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark`, `/ui-case-studies`, `/extract-modules-checklist`, `/claude-delegate` |
+| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, ui-case-studies, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, nodejs-backend-patterns, codebase-design, extract-modules-checklist, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo (**optional**), extract-meaning-full-insight, document-to-flowchart, claude-delegate |
+| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/nodejs-backend-patterns`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark`, `/ui-case-studies`, `/extract-modules-checklist`, `/claude-delegate` |
 | **Agent** | `the-developer` |
 | **Hooks** | CodeGraph sync on `sessionStart`, `beforeReadFile`, `afterFileEdit`; mockup-first on `beforeSubmitPrompt` / `preToolUse` for new screens |
 | **MCP** | `codegraph`, `postgres`, `mysql`, `mongodb`, `next-devtools`, `inspo` (DB URLs via env — see below) |
@@ -87,7 +87,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 1. Install this plugin (user or project scope)
 2. In the app repo: `specify init --here --integration cursor-agent` (once)
 3. `codegraph init` in that repo
-4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
+4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/nodejs-backend-patterns` for Node APIs/backends, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
 
 ## Plugin layout
 
@@ -99,6 +99,7 @@ agents/
 commands/
 hooks/hooks.json
 scripts/codegraph-sync.js
+scripts/regenerate-folder-structure.js
 mcp.json
 assets/logo.svg
 ```

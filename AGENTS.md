@@ -47,6 +47,8 @@ This companion combines:
 
 11. **React / Next.js performance** → `.cursor/skills/vercel-react-best-practices/SKILL.md` ([vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)) when writing, reviewing, or refactoring React/Next code.
 
+11b. **Node.js backend / API** → `.cursor/skills/nodejs-backend-patterns/SKILL.md` ([nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)) when building or reviewing Express/Fastify services, middleware, auth, DB integration, or REST/GraphQL APIs. Read `references/details.md` for worked patterns.
+
 12. **Module / seam / deep-module design** → `.cursor/skills/codebase-design/SKILL.md` ([codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)).
 
 12b. **Extract modules → checklist** → `.cursor/skills/extract-modules-checklist/SKILL.md`. Use before large refactors/migrations (see `rules/module-checklist.mdc`).
@@ -109,5 +111,5 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **Next.js MCP** — `next-devtools` (`next-devtools-mcp`); for Next.js 16+ with a running dev server
 - **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
-- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `ui-case-studies`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
+- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `ui-case-studies`, `grill-me` / `grilling`, `vercel-react-best-practices`, `nodejs-backend-patterns`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
 - **HyperFrames demos (optional)** — `hyperframes-demo` only when the user asks; personal `/hyperframes` / `/hyperframes-cli` skills when present. Not required for default delivery.

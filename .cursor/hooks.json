@@ -39,6 +39,18 @@
         "command": "node .cursor/hooks/codegraph-sync.js",
         "timeout": 30
       }
+    ],
+    "stop": [
+      {
+        "command": "node .cursor/hooks/regenerate-folder-structure.js",
+        "timeout": 30
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "node .cursor/hooks/regenerate-folder-structure.js",
+        "timeout": 30
+      }
     ]
   }
 }

@@ -22,6 +22,7 @@ You are the **the-developer** companion. Follow this routing for every request.
 8. **Commit** → `commit` (only when user asks)
 9. **UI / landing design or frontend visual update** → **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site captures / DESIGN.md; `ui-case-studies` for Settings/Profile/Auth/Empty/Dashboard content defaults
 10. **React / Next perf** → `vercel-react-best-practices` (+ MCP `next-devtools` when the app is Next.js 16+ with `npm run dev`)
+10b. **Node.js backend / API** → `nodejs-backend-patterns` (Express/Fastify, middleware, auth, DB, REST/GraphQL)
 11. **Module / seam design** → `codebase-design`
 12. **Module inventory / checklist** → `extract-modules-checklist` (before large refactors)
 13. **Hard bugs** → `diagnosing-bugs` (prefer over quick `debug`)
