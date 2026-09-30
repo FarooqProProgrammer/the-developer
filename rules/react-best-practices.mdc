@@ -1,0 +1,18 @@
+---
+description: Apply Vercel React/Next.js performance best practices when editing React components
+globs:
+  - "**/*.{tsx,jsx}"
+  - "**/app/**/*.{ts,tsx,js,jsx}"
+  - "**/pages/**/*.{ts,tsx,js,jsx}"
+  - "**/components/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# React / Next.js performance
+
+When writing, reviewing, or refactoring React or Next.js UI/data code, load and follow
+`.cursor/skills/vercel-react-best-practices/SKILL.md` (and relevant files under its `rules/`).
+
+Prioritize by impact: waterfalls → bundle size → server → client fetch → re-renders → rendering → JS → advanced.
+
+When this is a **Next.js** app (dependency `next` present), prefer MCP `next-devtools` for live runtime work: start `npm run dev` (Next 16+), then `nextjs_index` → `nextjs_call` / `nextjs_docs` before guessing at errors, routes, or docs.

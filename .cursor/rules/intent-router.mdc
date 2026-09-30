@@ -1,0 +1,79 @@
+---
+description: Classify each request — Spec Kit SDD vs Ponytail vs companion skills vs direct coding
+alwaysApply: true
+---
+
+# Intent router
+
+Classify the user request before acting. When writing or changing code, apply the Ponytail ladder (`rules/ponytail.mdc`). For structural navigation, prefer MCP `codegraph_explore` (plugin hooks sync the graph on session start, reads, and edits).
+
+## Spec Kit SDD (features)
+
+Use when the ask needs product intent, design choices, or multi-step delivery:
+
+- New feature or capability
+- API, auth, migration, redesign
+- Multi-file architecture decisions
+
+Run Spec Kit skills in order (Cursor chat, not terminal) — requires Spec Kit in the target project (`specify init --here --integration cursor-agent`):
+
+1. `/speckit-constitution` — only if constitution missing or still placeholders
+2. `/speckit-specify`
+3. `/speckit-clarify` — if requirements are ambiguous
+4. `/speckit-plan`
+5. `/speckit-tasks`
+6. `/speckit-analyze` / `/speckit-checklist` — optional quality gates
+7. `/speckit-implement` — climb Ponytail ladder while coding; public pages need SEO tags (see `seo-public-pages`); **prototype first** for change requests (see `prototype`)
+8. `/speckit-converge` — repeat with implement until Converged
+
+Or invoke command `/feature-pipeline`. Do **not** invent a custom Speckit pipeline.
+
+Stack: infer from the request + repo. If unclear, ask once before specify/plan.
+
+## Change request → prototype first
+
+For **every change request** (new feature, behavior change, UI change, or non-trivial bugfix that redesigns flow), load `prototype` **before** Spec Kit implement / direct coding:
+
+1. State the single question the prototype answers.
+2. Choose LOGIC (state/business model) or UI (look/feel variants) per the skill.
+3. Build throwaway, trivial-to-run code near the real module/page.
+4. Capture the user's verdict, then implement the validated decision (Spec Kit / TDD / Ponytail as usual).
+
+**Skip prototype only when** the user explicitly says so, or the ask is pure docs / typo / review / commit / explanation with no behavior or UI change.
+
+## Public page SEO
+
+When building public UI routes, enforce the `seo-public-pages` rule: title, description, canonical, plus robots + sitemap updates.
+
+## Companion and Ponytail skills
+
+| Intent | Skill |
+|--------|--------|
+| Change request (feature / UI / behavior) — prototype first | `prototype` |
+| Correctness / security / maintainability review | `code-review` |
+| Over-engineering / delete-list on a diff | `ponytail-review` |
+| Whole-repo over-engineering audit | `ponytail-audit` |
+| Bug / error / failing test (quick) | `debug` |
+| Commit / write message | `commit` |
+| Ponytail level / help | `ponytail`, `ponytail-help` |
+| New UI / landing / distinctive frontend design | `frontend-design` |
+| Grill / stress-test a plan or design | `grill-me` → then `grilling` |
+| Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
+| React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |
+| Deep modules / seams / interface design | `codebase-design` |
+| Hard bug (feedback loop / bisection) | `diagnosing-bugs` |
+| Test-first / red-green-refactor | `tdd` |
+| Conversation → spec/PRD for issue tracker | `to-spec` |
+| End-user demo video (HyperFrames CLI) | `hyperframes-demo` |
+| Document → full meaning / insight pack | `extract-meaning-full-insight` |
+| Document → Mermaid flowchart | `document-to-flowchart` |
+
+## CodeGraph
+
+Structural questions (call graph, definitions, blast radius, how X reaches Y) → `codegraph_explore` before Read/Grep loops.
+
+## Direct coding
+
+Use for one-file fixes, explanations, small refactors, and questions that do not need a written what/why — **after** the prototype gate when the change alters behavior or UI.
+
+Follow coding standards, constitution, and the Ponytail ladder.

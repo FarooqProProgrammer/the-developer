@@ -1,0 +1,59 @@
+---
+description: SEO requirements for public pages — title, description, canonical, robots, sitemap
+globs:
+  - "**/app/**/page.{tsx,ts,jsx,js}"
+  - "**/pages/**/*.{tsx,ts,jsx,js}"
+  - "**/src/pages/**/*.{tsx,ts,jsx,js}"
+  - "**/*.{html,astro,vue,svelte}"
+  - "**/robots.{txt,ts,js}"
+  - "**/sitemap*.{xml,ts,js}"
+alwaysApply: false
+---
+
+# Public page SEO
+
+When creating or editing a **public** (indexable) page, every page MUST ship:
+
+1. **`<title>`** — unique, human-readable, roughly 50–60 characters
+2. **meta description** — unique summary, roughly 120–160 characters
+3. **canonical** — absolute URL via `<link rel="canonical" href="…">` (or framework equivalent)
+4. **robots** — project-level `robots.txt` (or route) that allows crawling of public URLs and points at the sitemap
+5. **sitemap** — `sitemap.xml` (or generated sitemap) listing all public URLs
+
+Private / auth-only / preview pages MUST set `noindex` (and usually `nofollow`) instead of a public canonical-to-index path.
+
+## Prefer framework APIs
+
+Use the project's metadata API when it exists (e.g. Next.js `metadata` / `generateMetadata`, Remix `meta`, Astro `<head>`). Do not invent a second head system.
+
+```ts
+// ✅ Next.js App Router example
+export const metadata = {
+  title: "Pricing",
+  description: "Simple plans for teams that ship.",
+  alternates: { canonical: "https://example.com/pricing" },
+  robots: { index: true, follow: true },
+};
+```
+
+```html
+<!-- ✅ Plain HTML -->
+<title>Pricing</title>
+<meta name="description" content="Simple plans for teams that ship." />
+<link rel="canonical" href="https://example.com/pricing" />
+```
+
+## robots + sitemap (once per site)
+
+- `robots.txt` MUST include `Sitemap: https://<host>/sitemap.xml` (or the real sitemap URL).
+- Sitemap MUST list only public, canonical URLs (no `noindex`, no duplicates, prefer HTTPS).
+- When adding a public page, update the sitemap (or the generator that builds it) in the same change.
+
+## Checklist before done
+
+- [ ] Unique title
+- [ ] Unique description
+- [ ] Absolute canonical
+- [ ] Public → indexable; private → `noindex`
+- [ ] `robots.txt` present and references sitemap
+- [ ] New public URL included in sitemap

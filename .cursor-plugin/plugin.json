@@ -1,0 +1,21 @@
+{
+  "name": "the-developer",
+  "version": "1.0.0",
+  "description": "AI development companion: Spec Kit–style routing, Ponytail minimalism, CodeGraph navigation, SEO rules, grill sessions, React best practices, and browser testing.",
+  "author": {
+    "name": "the-developer"
+  },
+  "license": "MIT",
+  "keywords": [
+    "spec-kit",
+    "sdd",
+    "ponytail",
+    "codegraph",
+    "react",
+    "seo",
+    "browser-testing",
+    "workflow"
+  ],
+  "logo": "assets/logo.svg",
+  "homepage": "https://github.com/github/spec-kit"
+}

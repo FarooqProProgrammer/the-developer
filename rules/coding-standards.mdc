@@ -1,0 +1,20 @@
+---
+description: Generic coding standards plus Ponytail ladder for all stacks
+alwaysApply: true
+---
+
+# Coding standards
+
+- Match existing project style, naming, and layout. Do not invent a stack.
+- Prefer the smallest change that satisfies the request or active Spec Kit artifacts.
+- Climb the Ponytail ladder before writing code: YAGNI → reuse → stdlib → native → installed dep → one line → minimum that works.
+- No drive-by refactors, unrelated files, speculative abstractions, or new dependencies when a few lines suffice.
+- Never cut trust-boundary validation, data-loss handling, security, accessibility, or explicit user asks.
+- When behavior changes, add or update tests using the repo’s existing test runner if one exists; otherwise leave one small runnable check for non-trivial logic.
+- Never commit secrets, credentials, or `.env` values.
+- Do not commit unless the user asks; follow their git safety rules when they do.
+- Never work on production branches; ask which branch to use (see `git-branch-safety`).
+- Read and respect `.specify/memory/constitution.md` during plan/implement work.
+- Prefer clarity over cleverness; justify complexity when it is necessary.
+- Public pages need unique title, description, and absolute canonical; keep robots.txt + sitemap in sync (see `seo-public-pages`).
+- Surface blockers early instead of guessing past unknowns.

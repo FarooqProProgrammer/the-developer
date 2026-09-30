@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node \"D:/ai agent/the-developer/vendor/ponytail/hooks/ponytail-activate.js\"",
+        "timeout": 5
+      },
+      {
+        "command": "node .cursor/hooks/codegraph-sync.js",
+        "timeout": 60
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "node \"D:/ai agent/the-developer/vendor/ponytail/hooks/ponytail-mode-tracker.js\"",
+        "timeout": 5
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": "node .cursor/hooks/codegraph-sync.js",
+        "timeout": 30
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "node .cursor/hooks/codegraph-sync.js",
+        "timeout": 30
+      }
+    ]
+  }
+}

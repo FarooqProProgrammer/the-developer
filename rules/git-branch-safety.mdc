@@ -1,0 +1,37 @@
+---
+description: Never touch production branches; ask the user which branch to use
+alwaysApply: true
+---
+
+# Git branch safety
+
+## Production is off-limits
+
+Treat these as **production** unless the user names a different protected branch:
+
+- `main`, `master`, `production`, `prod`, `release`
+
+**Never** on a production branch (unless the user explicitly names that branch and the exact action):
+
+- checkout / switch onto it to do work
+- commit, amend, rebase, merge into it
+- push (including `--force` / `--force-with-lease`)
+- reset / rewrite history
+
+If you discover you are already on a production branch, **stop** and ask before any further git writes.
+
+## Ask before branch work
+
+Before creating, switching, renaming, or deleting a branch — or before any push — ask the user:
+
+1. Which branch should this work land on?
+2. Should a new branch be created from which base?
+
+Do not invent branch names. Prefer their naming; if they have none, propose one short option and wait for confirmation.
+
+## Default workflow
+
+1. Confirm target branch with the user.
+2. Create or switch to a **non-production** working branch.
+3. Commit / push only when they ask, and only to the agreed non-production branch.
+4. Open a PR into production only when they ask — never merge the PR yourself unless they explicitly request it.

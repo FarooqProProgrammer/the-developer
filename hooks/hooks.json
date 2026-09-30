@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node ./scripts/codegraph-sync.js",
+        "timeout": 60
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": "node ./scripts/codegraph-sync.js",
+        "timeout": 30
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "node ./scripts/codegraph-sync.js",
+        "timeout": 30
+      }
+    ]
+  }
+}
