@@ -27,7 +27,7 @@ This companion combines:
 
    Optional: `/speckit-clarify`, `/speckit-checklist`, `/speckit-analyze`.
    While implementing: Ponytail ladder + CodeGraph for navigation.
-   **Prototype first** for every change request (see item 15) before implement.
+   **Brainstorm first** for creative/feature design (`brainstorming`), then **prototype first** for every change request (see item 15) before implement.
 
 3. **Correctness / security review** → `.cursor/skills/code-review/SKILL.md`
 
@@ -41,6 +41,8 @@ This companion combines:
 
 8. **Frontend / UI design or update (required)** → `.cursor/skills/hallmark/SKILL.md` ([hallmark](https://github.com/nutlope/hallmark)) **must** load for any new UI, landing, or frontend visual update. Pair with `.cursor/skills/frontend-design/SKILL.md` and MCP `inspo` ([inspomcp.dev](https://inspomcp.dev/)) for real-site references. For Settings / Profile / Auth / Empty / Dashboard content defaults, load `.cursor/skills/ui-case-studies/SKILL.md`.
 
+8b. **Figma design → code (optional)** → `.cursor/skills/figma-design-to-code/SKILL.md` ([figma-design-to-code](https://www.skills.sh/figma/mcp-server-guide/figma-design-to-code)) **before** Figma MCP `get_design_context`. Use when the user shares a Figma link/node or asks to implement a Figma screen. Requires Figma MCP authenticated in Cursor ([mcp-server-guide](https://github.com/figma/mcp-server-guide)). Then adapt with `hallmark` + project stack.
+
 9. **Grill / stress-test a plan or design** → `/grill-me` → load `.cursor/skills/grilling/SKILL.md` ([mattpocock/skills](https://www.skills.sh/mattpocock/skills/grill-me)). Do this before Spec Kit implement when the plan needs hardening.
 
 10. **Browser testing / QA / dogfooding** → `/agent-browser` → then run `agent-browser skills get core` (and `dogfood` for exploratory QA) before any browser commands ([vercel-labs/agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)). Prefer agent-browser over built-in browser tools for web app testing.
@@ -48,6 +50,8 @@ This companion combines:
 11. **React / Next.js performance** → `.cursor/skills/vercel-react-best-practices/SKILL.md` ([vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)) when writing, reviewing, or refactoring React/Next code.
 
 11b. **Node.js backend / API** → `.cursor/skills/nodejs-backend-patterns/SKILL.md` ([nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)) when building or reviewing Express/Fastify services, middleware, auth, DB integration, or REST/GraphQL APIs. Read `references/details.md` for worked patterns.
+
+11c. **NestJS** → `.cursor/skills/nestjs-best-practices/SKILL.md` ([nestjs-best-practices](https://www.skills.sh/kadajett/agent-nestjs-skills/nestjs-best-practices)) for the rule checklist, plus `.cursor/skills/nestjs-expert/SKILL.md` ([nestjs-expert](https://www.skills.sh/sickn33/agentic-awesome-skills/nestjs-expert)) for the expert workflow. Use when writing, reviewing, or refactoring NestJS modules, DI, auth/guards, security, performance, or microservices. Read `rules/*.md` / `references/detailed-guide.md` as needed.
 
 12. **Module / seam / deep-module design** → `.cursor/skills/codebase-design/SKILL.md` ([codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)).
 
@@ -57,7 +61,7 @@ This companion combines:
 
 14. **Test-first / red-green-refactor** → `.cursor/skills/tdd/SKILL.md` ([tdd](https://www.skills.sh/mattpocock/skills/tdd)). Confirm seams with the user before writing tests.
 
-15. **Every change request → prototype first** → `.cursor/skills/prototype/SKILL.md` ([prototype](https://www.skills.sh/mattpocock/skills/prototype)). Build a throwaway LOGIC or UI prototype, get a verdict, then implement. Skip only if the user says so, or the ask is docs/typo/review/commit/explain with no behavior or UI change.
+15. **Every change request → brainstorm then prototype** → `.cursor/skills/brainstorming/SKILL.md` ([brainstorming](https://www.skills.sh/obra/superpowers/brainstorming)) when intent/design is open, then `.cursor/skills/prototype/SKILL.md` ([prototype](https://www.skills.sh/mattpocock/skills/prototype)). Build a throwaway LOGIC or UI prototype, get a verdict, then implement. Skip only if the user says so, or the ask is docs/typo/review/commit/explain with no behavior or UI change.
 
 16. **Conversation → spec/PRD** → `.cursor/skills/to-spec/SKILL.md` ([to-spec](https://www.skills.sh/mattpocock/skills/to-spec); formerly listed as [to-prd](https://www.skills.sh/mattpocock/skills/to-prd)). Synthesize a spec and publish to the issue tracker — no interview.
 
@@ -111,5 +115,5 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **Next.js MCP** — `next-devtools` (`next-devtools-mcp`); for Next.js 16+ with a running dev server
 - **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
-- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `ui-case-studies`, `grill-me` / `grilling`, `vercel-react-best-practices`, `nodejs-backend-patterns`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
+- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `ui-case-studies`, `grill-me` / `grilling`, `vercel-react-best-practices`, `nodejs-backend-patterns`, `nestjs-best-practices`, `nestjs-expert`, `brainstorming`, `figma-design-to-code` (when Figma MCP), `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
 - **HyperFrames demos (optional)** — `hyperframes-demo` only when the user asks; personal `/hyperframes` / `/hyperframes-cli` skills when present. Not required for default delivery.

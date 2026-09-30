@@ -22,6 +22,7 @@ Then **Developer: Reload Window** → open **Customize** → confirm `the-develo
 | DB MCPs | Postgres / MySQL / MongoDB via `mcp.json` + env (see `docs/mcp-databases.env.example`) |
 | Next.js MCP | `next-devtools` (`next-devtools-mcp`) — use when the app is Next.js 16+ with `npm run dev` |
 | Inspo MCP | `inspo` ([inspomcp.dev](https://inspomcp.dev/)) — real-site design references for UI work |
+| Figma → code | `figma-design-to-code` when using Figma MCP (Cursor Figma plugin) |
 | Companion | review, debug, commit, grill, frontend-design, React best practices, agent-browser |
 
 ## Host CLIs
@@ -44,11 +45,14 @@ codegraph init
 | Command | Does |
 |---------|------|
 | `/feature-pipeline` | Spec Kit SDD stages |
+| `/brainstorming` | Intent & design before creative work |
 | `/grill-me` | Stress-test the plan |
 | `/code-review` | Correctness review |
 | `/browser-test` | agent-browser QA |
 | `/codebase-design` | Deep modules / seams |
 | `/nodejs-backend-patterns` | Node.js API / backend patterns |
+| `/nestjs-best-practices` | NestJS architecture / DI / security |
+| `/nestjs-expert` | NestJS expert workflow + detailed guide |
 | `/diagnose-bug` | Hard-bug diagnosis loop |
 | `/tdd` | Test-first red-green-refactor |
 | `/prototype` | Throwaway prototype before change |
@@ -57,6 +61,7 @@ codegraph init
 | `/extract-meaning-full-insight` | Insight pack from a user document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
 | `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
+| `/figma-design-to-code` | Figma MCP design → code (when Figma MCP enabled) |
 | `/ui-case-studies` | Settings & common-screen content defaults |
 | `/extract-modules-checklist` | Extract modules → checklist |
 | `/claude-delegate` | Delegate impl to Claude Code CLI |
@@ -86,6 +91,10 @@ Publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish
 - [agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)
 - [vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)
 - [nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)
+- [nestjs-best-practices](https://www.skills.sh/kadajett/agent-nestjs-skills/nestjs-best-practices)
+- [nestjs-expert](https://www.skills.sh/sickn33/agentic-awesome-skills/nestjs-expert)
+- [brainstorming](https://www.skills.sh/obra/superpowers/brainstorming)
+- [figma-design-to-code](https://www.skills.sh/figma/mcp-server-guide/figma-design-to-code)
 - [codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)
 - [diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)
 - [tdd](https://www.skills.sh/mattpocock/skills/tdd)

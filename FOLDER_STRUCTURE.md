@@ -1,6 +1,6 @@
 # Folder structure
 
-Generated: 2026-09-30T16:18:32.979Z
+Generated: 2026-09-30T16:32:47.379Z
 Root: `the-developer`
 
 ```
@@ -25,6 +25,16 @@ the-developer/
     skills/
       agent-browser/
         SKILL.md
+      brainstorming/
+        scripts/
+          frame-template.html
+          helper.js
+          server.cjs
+          start-server.sh
+          stop-server.sh
+        SKILL.md
+        spec-document-reviewer-prompt.md
+        visual-companion.md
       claude-delegate/
         references/
           dispatch-and-poll.md
@@ -62,6 +72,8 @@ the-developer/
       extract-meaning-full-insight/
         SKILL.md
       extract-modules-checklist/
+        SKILL.md
+      figma-design-to-code/
         SKILL.md
       frontend-design/
         LICENSE.txt
@@ -306,6 +318,55 @@ the-developer/
         hyperframes-demo/
           SKILL.md
         SKILL.md
+      nestjs-best-practices/
+        rules/
+          _sections.md
+          _template.md
+          api-use-dto-serialization.md
+          api-use-interceptors.md
+          api-use-pipes.md
+          api-versioning.md
+          arch-avoid-circular-deps.md
+          arch-feature-modules.md
+          arch-module-sharing.md
+          arch-single-responsibility.md
+          arch-use-events.md
+          arch-use-repository-pattern.md
+          db-avoid-n-plus-one.md
+          db-use-migrations.md
+          db-use-transactions.md
+          devops-graceful-shutdown.md
+          devops-use-config-module.md
+          devops-use-logging.md
+          di-avoid-service-locator.md
+          di-interface-segregation.md
+          di-liskov-substitution.md
+          di-prefer-constructor-injection.md
+          di-scope-awareness.md
+          di-use-interfaces-tokens.md
+          error-handle-async-errors.md
+          error-throw-http-exceptions.md
+          error-use-exception-filters.md
+          micro-use-health-checks.md
+          micro-use-patterns.md
+          micro-use-queues.md
+          perf-async-hooks.md
+          perf-lazy-loading.md
+          perf-optimize-database.md
+          perf-use-caching.md
+          security-auth-jwt.md
+          security-rate-limiting.md
+          security-sanitize-output.md
+          security-use-guards.md
+          security-validate-all-input.md
+          test-e2e-supertest.md
+          test-mock-external-services.md
+          test-use-testing-module.md
+        SKILL.md
+      nestjs-expert/
+        references/
+          detailed-guide.md
+        SKILL.md
       nodejs-backend-patterns/
         references/
           advanced-patterns.md
@@ -512,6 +573,7 @@ the-developer/
   assets/
     logo.svg
   commands/
+    brainstorming.md
     browser-test.md
     claude-delegate.md
     code-review.md
@@ -521,9 +583,12 @@ the-developer/
     extract-meaning-full-insight.md
     extract-modules-checklist.md
     feature-pipeline.md
+    figma-design-to-code.md
     grill-me.md
     hallmark.md
     hyperframes-demo.md
+    nestjs-best-practices.md
+    nestjs-expert.md
     nodejs-backend-patterns.md
     prototype.md
     tdd.md
@@ -554,6 +619,16 @@ the-developer/
   skills/
     agent-browser/
       SKILL.md
+    brainstorming/
+      scripts/
+        frame-template.html
+        helper.js
+        server.cjs
+        start-server.sh
+        stop-server.sh
+      SKILL.md
+      spec-document-reviewer-prompt.md
+      visual-companion.md
     claude-delegate/
       references/
         dispatch-and-poll.md
@@ -587,6 +662,8 @@ the-developer/
     extract-meaning-full-insight/
       SKILL.md
     extract-modules-checklist/
+      SKILL.md
+    figma-design-to-code/
       SKILL.md
     frontend-design/
       LICENSE.txt
@@ -714,6 +791,55 @@ the-developer/
         typography.md
       SKILL.md
     hyperframes-demo/
+      SKILL.md
+    nestjs-best-practices/
+      rules/
+        _sections.md
+        _template.md
+        api-use-dto-serialization.md
+        api-use-interceptors.md
+        api-use-pipes.md
+        api-versioning.md
+        arch-avoid-circular-deps.md
+        arch-feature-modules.md
+        arch-module-sharing.md
+        arch-single-responsibility.md
+        arch-use-events.md
+        arch-use-repository-pattern.md
+        db-avoid-n-plus-one.md
+        db-use-migrations.md
+        db-use-transactions.md
+        devops-graceful-shutdown.md
+        devops-use-config-module.md
+        devops-use-logging.md
+        di-avoid-service-locator.md
+        di-interface-segregation.md
+        di-liskov-substitution.md
+        di-prefer-constructor-injection.md
+        di-scope-awareness.md
+        di-use-interfaces-tokens.md
+        error-handle-async-errors.md
+        error-throw-http-exceptions.md
+        error-use-exception-filters.md
+        micro-use-health-checks.md
+        micro-use-patterns.md
+        micro-use-queues.md
+        perf-async-hooks.md
+        perf-lazy-loading.md
+        perf-optimize-database.md
+        perf-use-caching.md
+        security-auth-jwt.md
+        security-rate-limiting.md
+        security-sanitize-output.md
+        security-use-guards.md
+        security-validate-all-input.md
+        test-e2e-supertest.md
+        test-mock-external-services.md
+        test-use-testing-module.md
+      SKILL.md
+    nestjs-expert/
+      references/
+        detailed-guide.md
       SKILL.md
     nodejs-backend-patterns/
       references/

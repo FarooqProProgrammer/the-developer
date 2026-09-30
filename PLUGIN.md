@@ -33,8 +33,8 @@ Or run:
 | Component | Contents |
 |-----------|----------|
 | **Rules** | Intent router, coding standards, Ponytail ladder, CodeGraph, SEO public pages, React best-practices gate, git branch safety, hallmark-frontend, frontend-mockup-first, module-checklist |
-| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, ui-case-studies, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, nodejs-backend-patterns, codebase-design, extract-modules-checklist, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo (**optional**), extract-meaning-full-insight, document-to-flowchart, claude-delegate |
-| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/nodejs-backend-patterns`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark`, `/ui-case-studies`, `/extract-modules-checklist`, `/claude-delegate` |
+| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, ui-case-studies, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, nodejs-backend-patterns, nestjs-best-practices, nestjs-expert, brainstorming, figma-design-to-code (**when Figma MCP**), codebase-design, extract-modules-checklist, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo (**optional**), extract-meaning-full-insight, document-to-flowchart, claude-delegate |
+| **Commands** | `/feature-pipeline`, `/brainstorming`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/nodejs-backend-patterns`, `/nestjs-best-practices`, `/nestjs-expert`, `/figma-design-to-code`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark`, `/ui-case-studies`, `/extract-modules-checklist`, `/claude-delegate` |
 | **Agent** | `the-developer` |
 | **Hooks** | CodeGraph sync on `sessionStart`, `beforeReadFile`, `afterFileEdit`; mockup-first on `beforeSubmitPrompt` / `preToolUse` for new screens |
 | **MCP** | `codegraph`, `postgres`, `mysql`, `mongodb`, `next-devtools`, `inspo` (DB URLs via env — see below) |
@@ -73,6 +73,10 @@ Optional local stdio: `"inspo": { "command": "npx", "args": ["-y", "inspo-mcp"] 
 
 Skill from [nutlope/hallmark](https://github.com/nutlope/hallmark). **Must** load when designing new UI or updating frontend visuals (`/hallmark`). Verbs: default build, `audit`, `redesign`, `study`.
 
+## Figma MCP → code (optional)
+
+When the user implements a **Figma design as code**, load `figma-design-to-code` **before** Figma MCP `get_design_context` (`/figma-design-to-code`). Requires the [Cursor Figma plugin / Figma MCP](https://github.com/figma/mcp-server-guide) authenticated. Not bundled in `mcp.json` — enable Figma MCP in Cursor, then use this skill for the design-to-code workflow. Still apply **`hallmark`** + `frontend-design` when adapting into production UI.
+
 ## External CLIs (host machine)
 
 ```bash
@@ -87,7 +91,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 1. Install this plugin (user or project scope)
 2. In the app repo: `specify init --here --integration cursor-agent` (once)
 3. `codegraph init` in that repo
-4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/nodejs-backend-patterns` for Node APIs/backends, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
+4. Chat: `/feature-pipeline` for features, `/brainstorming` before creative work, `/hallmark` for any UI design/update, `/figma-design-to-code` when implementing from Figma MCP, `/nodejs-backend-patterns` for Node APIs/backends, `/nestjs-best-practices` / `/nestjs-expert` for NestJS apps, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
 
 ## Plugin layout
 

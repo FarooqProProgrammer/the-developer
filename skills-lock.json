@@ -1,17 +1,35 @@
 {
   "version": 1,
   "skills": {
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "fef7f05d17a88e6b498f24d1b2081880a4666a664cc49881f56527808f26fbd6"
+    },
     "claude-delegate": {
       "source": "amelnagdy/delegate-skills",
       "sourceType": "github",
       "skillPath": "skills/claude-delegate/SKILL.md",
       "computedHash": "d9fc54c536a1dba111df5b4de02699e850fce7c1f788603e8ef917ed42719629"
     },
+    "figma-design-to-code": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "skillPath": "skills/figma-design-to-code/SKILL.md",
+      "computedHash": "67cd02cda36813f140e625d7abb24115df84423ddeeb1eb2afe0906a8f6a15f1"
+    },
     "nestjs-best-practices": {
       "source": "kadajett/agent-nestjs-skills",
       "sourceType": "github",
       "skillPath": "skills/nestjs-best-practices/SKILL.md",
       "computedHash": "29c326e77d1462ed9526996acae5da0cf4003146982abc8c67378f5dbad6b181"
+    },
+    "nestjs-expert": {
+      "source": "sickn33/agentic-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nestjs-expert/SKILL.md",
+      "computedHash": "7b83be17282c0125e7cf9249524f6da6d3072ccdea42e08e5e80cb3a4bfaa764"
     },
     "nodejs-backend-patterns": {
       "source": "wshobson/agents",

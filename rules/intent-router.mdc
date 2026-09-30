@@ -32,7 +32,7 @@ Stack: infer from the request + repo. If unclear, ask once before specify/plan.
 
 ## Change request → prototype first
 
-For **every change request** (new feature, behavior change, UI change, or non-trivial bugfix that redesigns flow), load `prototype` **before** Spec Kit implement / direct coding:
+For **every change request** (new feature, behavior change, UI change, or non-trivial bugfix that redesigns flow), load `brainstorming` when intent/design is still open, then `prototype` **before** Spec Kit implement / direct coding:
 
 1. State the single question the prototype answers.
 2. Choose LOGIC (state/business model) or UI (look/feel variants) per the skill.
@@ -49,6 +49,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 
 | Intent | Skill |
 |--------|--------|
+| Creative work / new feature — intent & design before code | `brainstorming` |
 | Change request (feature / UI / behavior) — prototype first | `prototype` |
 | Correctness / security / maintainability review | `code-review` |
 | Over-engineering / delete-list on a diff | `ponytail-review` |
@@ -57,6 +58,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Commit / write message | `commit` |
 | Ponytail level / help | `ponytail`, `ponytail-help` |
 | New UI / landing / distinctive frontend design | **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site refs |
+| Figma design → code (Figma MCP / link / node) | `figma-design-to-code` **before** `get_design_context`; then `hallmark` |
 | New frontend screen / page | **Mockup first** (same palette) → then implement (`frontend-mockup-first`) |
 | Common screen content (Settings, Profile, Auth, …) | `ui-case-studies` |
 | Frontend visual update / redesign / UI audit | **`hallmark`** (`audit` / `redesign` / `study` as appropriate) |
@@ -64,6 +66,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
 | React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |
 | Node.js backend / API / middleware / auth / DB service | `nodejs-backend-patterns` |
+| NestJS modules / DI / guards / microservices | `nestjs-best-practices` + `nestjs-expert` |
 | Deep modules / seams / interface design | `codebase-design` |
 | Extract modules → actionable checklist | `extract-modules-checklist` |
 | Hard bug (feedback loop / bisection) | `diagnosing-bugs` |
