@@ -59,7 +59,7 @@ This companion combines:
 
 16. **Conversation → spec/PRD** → `.cursor/skills/to-spec/SKILL.md` ([to-spec](https://www.skills.sh/mattpocock/skills/to-spec); formerly listed as [to-prd](https://www.skills.sh/mattpocock/skills/to-prd)). Synthesize a spec and publish to the issue tracker — no interview.
 
-17. **End-user demo video** → `.cursor/skills/hyperframes-demo/SKILL.md`. Use HyperFrames CLI to prepare a short shareable demo; preview before render.
+17. **End-user demo video (optional)** → `.cursor/skills/hyperframes-demo/SKILL.md` — only if the user explicitly asks for HyperFrames / a video demo; not part of the default feature path.
 
 18. **Document → full meaning / insights** → `.cursor/skills/extract-meaning-full-insight/SKILL.md`. Take the document from the user (attach / paste / path); produce the insight pack.
 
@@ -110,4 +110,4 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
 - **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
-- **HyperFrames demos** — `hyperframes-demo` (+ personal `/hyperframes` / `/hyperframes-cli` skills when present)
+- **HyperFrames demos (optional)** — `hyperframes-demo` only when the user asks; personal `/hyperframes` / `/hyperframes-cli` skills when present. Not required for default delivery.

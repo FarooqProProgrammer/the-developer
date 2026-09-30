@@ -52,7 +52,7 @@ codegraph init
 | `/tdd` | Test-first red-green-refactor |
 | `/prototype` | Throwaway prototype before change |
 | `/to-spec` | Conversation → spec/PRD (issue tracker) |
-| `/hyperframes-demo` | End-user demo via HyperFrames CLI |
+| `/hyperframes-demo` | Optional HyperFrames video demo (user must ask) |
 | `/extract-meaning-full-insight` | Insight pack from a user document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
 | `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
@@ -86,6 +86,6 @@ Publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish
 - [codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)
 - [diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)
 - [tdd](https://www.skills.sh/mattpocock/skills/tdd)
-- [extract-modules-checklist](.) — project skill
-- [claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)
+- [prototype](https://www.skills.sh/mattpocock/skills/prototype)
 - [to-spec](https://www.skills.sh/mattpocock/skills/to-spec) (skills.sh still lists the old name [to-prd](https://www.skills.sh/mattpocock/skills/to-prd))
+- [claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)

@@ -1,10 +1,8 @@
 ---
 name: hyperframes-demo
-description: Prepare an end-user demo video with the HyperFrames CLI
+description: Optional — end-user HyperFrames video demo (only when user asks)
 ---
 
-Load and follow the `hyperframes-demo` skill.
+**Optional.** Load `hyperframes-demo` only when the user explicitly asks for a HyperFrames / video demo. Do not use for ordinary features.
 
-Build a short (≈30–60s) HyperFrames demo for the **end user**: lock audience + one message, scaffold under `demos/`, author with catalog→lint→check, open preview, render only after approval, then hand off the `*.mp4` path and the one-line takeaway.
-
-Also load `/hyperframes` and `/hyperframes-cli` for composition and CLI contracts.
+If opted in: build a short (≈30–60s) demo — lock audience + one message, scaffold under `demos/`, catalog→lint→check, preview, render only after approval. Also load `/hyperframes` and `/hyperframes-cli` when those skills are available.

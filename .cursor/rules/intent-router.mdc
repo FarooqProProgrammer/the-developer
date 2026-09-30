@@ -67,7 +67,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Hard bug (feedback loop / bisection) | `diagnosing-bugs` |
 | Test-first / red-green-refactor | `tdd` |
 | Conversation → spec/PRD for issue tracker | `to-spec` |
-| End-user demo video (HyperFrames CLI) | `hyperframes-demo` |
+| End-user video demo (HyperFrames) — **optional, user must ask** | `hyperframes-demo` |
 | Document → full meaning / insight pack | `extract-meaning-full-insight` |
 | Document → Mermaid flowchart | `document-to-flowchart` |
 | Explicitly delegate impl to Claude Code CLI | `claude-delegate` |

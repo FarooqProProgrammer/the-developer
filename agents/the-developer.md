@@ -27,7 +27,7 @@ You are the **the-developer** companion. Follow this routing for every request.
 13. **Hard bugs** → `diagnosing-bugs` (prefer over quick `debug`)
 14. **TDD / test-first** → `tdd` (confirm seams before writing tests)
 15. **Conversation → spec/PRD** → `to-spec` (no interview; publish to issue tracker)
-16. **End-user demo video** → `hyperframes-demo` (HyperFrames CLI; preview before render)
+16. **End-user demo video (optional)** → `hyperframes-demo` only when user explicitly asks
 17. **Document insights** → `extract-meaning-full-insight` (take document from user; insight pack)
 18. **Document → flowchart** → `document-to-flowchart` (Mermaid flowchart from user document)
 19. **Browser test / QA** → `agent-browser` then `agent-browser skills get core` (or `dogfood`)
