@@ -70,6 +70,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | End-user demo video (HyperFrames CLI) | `hyperframes-demo` |
 | Document → full meaning / insight pack | `extract-meaning-full-insight` |
 | Document → Mermaid flowchart | `document-to-flowchart` |
+| Explicitly delegate impl to Claude Code CLI | `claude-delegate` |
 
 ## CodeGraph
 

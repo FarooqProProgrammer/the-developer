@@ -65,6 +65,8 @@ This companion combines:
 
 19. **Document → flowchart** → `.cursor/skills/document-to-flowchart/SKILL.md`. Take the document from the user; emit a Mermaid flowchart + legend.
 
+20. **Delegate to Claude Code CLI** → `.cursor/skills/claude-delegate/SKILL.md` ([claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)). Only when the user explicitly asks to delegate; orchestrate brief → review → land.
+
 ## Public page SEO
 
 Every **public** page MUST include unique **title**, **description**, and absolute **canonical**, plus site-level **robots.txt** and **sitemap** (see `.cursor/rules/seo-public-pages.mdc`). Private pages use `noindex`.
@@ -107,5 +109,5 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **Next.js MCP** — `next-devtools` (`next-devtools-mcp`); for Next.js 16+ with a running dev server
 - **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
-- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`
+- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`, `claude-delegate`
 - **HyperFrames demos** — `hyperframes-demo` (+ personal `/hyperframes` / `/hyperframes-cli` skills when present)

@@ -57,6 +57,7 @@ codegraph init
 | `/document-to-flowchart` | Document → Mermaid flowchart |
 | `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
 | `/extract-modules-checklist` | Extract modules → checklist |
+| `/claude-delegate` | Delegate impl to Claude Code CLI |
 
 ## Plugin package layout
 
@@ -85,5 +86,6 @@ Publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish
 - [codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)
 - [diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)
 - [tdd](https://www.skills.sh/mattpocock/skills/tdd)
-- [prototype](https://www.skills.sh/mattpocock/skills/prototype)
+- [extract-modules-checklist](.) — project skill
+- [claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)
 - [to-spec](https://www.skills.sh/mattpocock/skills/to-spec) (skills.sh still lists the old name [to-prd](https://www.skills.sh/mattpocock/skills/to-prd))

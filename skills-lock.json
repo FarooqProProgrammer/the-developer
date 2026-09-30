@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "claude-delegate": {
+      "source": "amelnagdy/delegate-skills",
+      "sourceType": "github",
+      "skillPath": "skills/claude-delegate/SKILL.md",
+      "computedHash": "d9fc54c536a1dba111df5b4de02699e850fce7c1f788603e8ef917ed42719629"
+    },
     "to-spec": {
       "source": "mattpocock/skills",
       "sourceType": "github",
