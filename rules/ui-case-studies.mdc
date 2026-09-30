@@ -1,0 +1,15 @@
+---
+description: Use UI case studies for default sections and content on common screens
+globs:
+  - "**/settings/**/*.{tsx,jsx,vue}"
+  - "**/Setting*.{tsx,jsx}"
+  - "**/profile/**/*.{tsx,jsx}"
+  - "**/auth/**/*.{tsx,jsx}"
+  - "**/login/**/*.{tsx,jsx}"
+  - "**/dashboard/**/*.{tsx,jsx}"
+alwaysApply: false
+---
+
+# UI case studies
+
+When building or updating **Settings, Profile, Auth, Empty state, or Dashboard** screens, load `ui-case-studies` and the matching `cases/*.md` file. Follow its default sections and content expectations; remove what YAGNI. Still run mockup-first + `hallmark` for visuals.

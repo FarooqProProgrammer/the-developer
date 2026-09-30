@@ -56,6 +56,7 @@ codegraph init
 | `/extract-meaning-full-insight` | Insight pack from a user document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
 | `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
+| `/ui-case-studies` | Settings & common-screen content defaults |
 | `/extract-modules-checklist` | Extract modules → checklist |
 | `/claude-delegate` | Delegate impl to Claude Code CLI |
 

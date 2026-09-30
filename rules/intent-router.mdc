@@ -58,6 +58,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Ponytail level / help | `ponytail`, `ponytail-help` |
 | New UI / landing / distinctive frontend design | **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site refs |
 | New frontend screen / page | **Mockup first** (same palette) → then implement (`frontend-mockup-first`) |
+| Common screen content (Settings, Profile, Auth, …) | `ui-case-studies` |
 | Frontend visual update / redesign / UI audit | **`hallmark`** (`audit` / `redesign` / `study` as appropriate) |
 | Grill / stress-test a plan or design | `grill-me` → then `grilling` |
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |

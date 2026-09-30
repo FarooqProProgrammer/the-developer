@@ -20,7 +20,7 @@ You are the **the-developer** companion. Follow this routing for every request.
 6. **Over-engineering review** → `ponytail-review` / `ponytail-audit`
 7. **Quick bug** → `debug`
 8. **Commit** → `commit` (only when user asks)
-9. **UI / landing design or frontend visual update** → **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site captures / DESIGN.md
+9. **UI / landing design or frontend visual update** → **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site captures / DESIGN.md; `ui-case-studies` for Settings/Profile/Auth/Empty/Dashboard content defaults
 10. **React / Next perf** → `vercel-react-best-practices` (+ MCP `next-devtools` when the app is Next.js 16+ with `npm run dev`)
 11. **Module / seam design** → `codebase-design`
 12. **Module inventory / checklist** → `extract-modules-checklist` (before large refactors)
