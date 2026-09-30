@@ -49,6 +49,8 @@ This companion combines:
 
 12. **Module / seam / deep-module design** → `.cursor/skills/codebase-design/SKILL.md` ([codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)).
 
+12b. **Extract modules → checklist** → `.cursor/skills/extract-modules-checklist/SKILL.md`. Use before large refactors/migrations (see `rules/module-checklist.mdc`).
+
 13. **Hard bugs** → `.cursor/skills/diagnosing-bugs/SKILL.md` ([diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)) — prefer over the quick `debug` skill when the bug needs a feedback loop / bisection.
 
 14. **Test-first / red-green-refactor** → `.cursor/skills/tdd/SKILL.md` ([tdd](https://www.skills.sh/mattpocock/skills/tdd)). Confirm seams with the user before writing tests.
@@ -105,5 +107,5 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **Next.js MCP** — `next-devtools` (`next-devtools-mcp`); for Next.js 16+ with a running dev server
 - **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
-- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`
+- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `extract-modules-checklist`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`
 - **HyperFrames demos** — `hyperframes-demo` (+ personal `/hyperframes` / `/hyperframes-cli` skills when present)

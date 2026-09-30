@@ -1,0 +1,21 @@
+---
+description: New frontend screens require a palette-matched mockup before implementation
+globs:
+  - "**/*.{tsx,jsx,css,scss}"
+  - "**/app/**/*.{ts,tsx,js,jsx}"
+  - "**/pages/**/*.{ts,tsx,js,jsx}"
+  - "**/components/**/*.{ts,tsx,js,jsx}"
+alwaysApply: true
+---
+
+# Mockup first (same palette)
+
+When creating **any new frontend screen** (page, route, modal-as-screen, major view):
+
+1. **Do not** implement production UI first.
+2. **Extract** the existing frontend palette (CSS variables, theme tokens, Tailwind theme, or shared styles). Reuse those colors — do not invent a new palette.
+3. **Create a mockup first** — lightweight HTML/CSS or a clearly named throwaway route/file (e.g. `mockups/<screen>.html` or `app/(mockups)/…`) using the **same** colors, type scale, and spacing tokens as the live app.
+4. Show the mockup to the user and wait for approval (or explicit “skip mockup”).
+5. Only then implement the real screen, still on the same palette tokens.
+
+Also load `hallmark` + `frontend-design` for visual work. Use MCP `inspo` when picking a vibe. Skip this gate only for pure logic/data changes with no new visual surface, or when the user explicitly skips the mockup.

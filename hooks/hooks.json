@@ -7,6 +7,19 @@
         "timeout": 60
       }
     ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "node ./scripts/frontend-mockup-first.js",
+        "timeout": 5
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "node ./scripts/frontend-mockup-first.js",
+        "matcher": "Write|StrReplace|Edit",
+        "timeout": 5
+      }
+    ],
     "beforeReadFile": [
       {
         "command": "node ./scripts/codegraph-sync.js",

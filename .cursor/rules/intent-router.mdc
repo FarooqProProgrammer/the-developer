@@ -57,11 +57,13 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Commit / write message | `commit` |
 | Ponytail level / help | `ponytail`, `ponytail-help` |
 | New UI / landing / distinctive frontend design | **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site refs |
+| New frontend screen / page | **Mockup first** (same palette) → then implement (`frontend-mockup-first`) |
 | Frontend visual update / redesign / UI audit | **`hallmark`** (`audit` / `redesign` / `study` as appropriate) |
 | Grill / stress-test a plan or design | `grill-me` → then `grilling` |
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
 | React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |
 | Deep modules / seams / interface design | `codebase-design` |
+| Extract modules → actionable checklist | `extract-modules-checklist` |
 | Hard bug (feedback loop / bisection) | `diagnosing-bugs` |
 | Test-first / red-green-refactor | `tdd` |
 | Conversation → spec/PRD for issue tracker | `to-spec` |

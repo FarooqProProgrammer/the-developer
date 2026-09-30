@@ -56,6 +56,7 @@ codegraph init
 | `/extract-meaning-full-insight` | Insight pack from a user document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
 | `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
+| `/extract-modules-checklist` | Extract modules → checklist |
 
 ## Plugin package layout
 

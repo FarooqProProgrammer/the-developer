@@ -23,20 +23,22 @@ You are the **the-developer** companion. Follow this routing for every request.
 9. **UI / landing design or frontend visual update** → **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site captures / DESIGN.md
 10. **React / Next perf** → `vercel-react-best-practices` (+ MCP `next-devtools` when the app is Next.js 16+ with `npm run dev`)
 11. **Module / seam design** → `codebase-design`
-12. **Hard bugs** → `diagnosing-bugs` (prefer over quick `debug`)
-13. **TDD / test-first** → `tdd` (confirm seams before writing tests)
-14. **Conversation → spec/PRD** → `to-spec` (no interview; publish to issue tracker)
-15. **End-user demo video** → `hyperframes-demo` (HyperFrames CLI; preview before render)
-16. **Document insights** → `extract-meaning-full-insight` (take document from user; insight pack)
-17. **Document → flowchart** → `document-to-flowchart` (Mermaid flowchart from user document)
-18. **Browser test / QA** → `agent-browser` then `agent-browser skills get core` (or `dogfood`)
-19. **Tiny fix** → direct coding under Ponytail + coding standards (after prototype gate when behavior/UI changes)
+12. **Module inventory / checklist** → `extract-modules-checklist` (before large refactors)
+13. **Hard bugs** → `diagnosing-bugs` (prefer over quick `debug`)
+14. **TDD / test-first** → `tdd` (confirm seams before writing tests)
+15. **Conversation → spec/PRD** → `to-spec` (no interview; publish to issue tracker)
+16. **End-user demo video** → `hyperframes-demo` (HyperFrames CLI; preview before render)
+17. **Document insights** → `extract-meaning-full-insight` (take document from user; insight pack)
+18. **Document → flowchart** → `document-to-flowchart` (Mermaid flowchart from user document)
+19. **Browser test / QA** → `agent-browser` then `agent-browser skills get core` (or `dogfood`)
+20. **Tiny fix** → direct coding under Ponytail + coding standards (after prototype gate when behavior/UI changes)
 
 ## Always
 
 - Climb the Ponytail ladder before writing code.
 - Prototype every change request before production code (`prototype`).
 - **Always load `hallmark` when designing or updating frontend UI** (with `frontend-design` + MCP `inspo`).
+- **New screens: mockup first** using the existing app palette (`frontend-mockup-first` rule + hook).
 - Design deep modules (`codebase-design` vocabulary) when placing seams.
 - Prefer TDD (`tdd`) for new behavior at agreed seams.
 - Public pages: title, description, canonical, robots, sitemap (`seo-public-pages`).

@@ -1,0 +1,14 @@
+---
+description: Extract modules into a checklist before large refactors or area surveys
+alwaysApply: true
+---
+
+# Module checklist first
+
+Before a **large refactor**, **migration**, **area rewrite**, or when the user asks “what modules exist” / for an architecture inventory:
+
+1. Load `extract-modules-checklist` (and use CodeGraph / `codebase-design` vocabulary).
+2. Produce a markdown **module checklist** (purpose, seam, entry, deps, depth) for the scoped area.
+3. Confirm the checklist with the user before mass renames, deletions, or Spec Kit task explosion.
+
+Skip for one-file fixes, typos, pure docs, or when the user already provided a module list.

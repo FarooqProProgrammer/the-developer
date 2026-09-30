@@ -32,11 +32,11 @@ Or run:
 
 | Component | Contents |
 |-----------|----------|
-| **Rules** | Intent router, coding standards, Ponytail ladder, CodeGraph, SEO public pages, React best-practices gate, git branch safety |
-| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, codebase-design, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo, extract-meaning-full-insight, document-to-flowchart |
-| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark` |
+| **Rules** | Intent router, coding standards, Ponytail ladder, CodeGraph, SEO public pages, React best-practices gate, git branch safety, hallmark-frontend, frontend-mockup-first, module-checklist |
+| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, codebase-design, extract-modules-checklist, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo, extract-meaning-full-insight, document-to-flowchart |
+| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark`, `/extract-modules-checklist` |
 | **Agent** | `the-developer` |
-| **Hooks** | CodeGraph sync on `sessionStart`, `beforeReadFile`, `afterFileEdit` |
+| **Hooks** | CodeGraph sync on `sessionStart`, `beforeReadFile`, `afterFileEdit`; mockup-first on `beforeSubmitPrompt` / `preToolUse` for new screens |
 | **MCP** | `codegraph`, `postgres`, `mysql`, `mongodb`, `next-devtools`, `inspo` (DB URLs via env — see below) |
 
 **Not bundled:** Spec Kit CLI/skills (install per project with `specify init --here --integration cursor-agent`). Ponytail mode hooks (plugin uses always-on `rules/ponytail.mdc` instead).
@@ -87,7 +87,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 1. Install this plugin (user or project scope)
 2. In the app repo: `specify init --here --integration cursor-agent` (once)
 3. `codegraph init` in that repo
-4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, `/hyperframes-demo` for an end-user video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
+4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/extract-modules-checklist` before large refactors, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, `/hyperframes-demo` for an end-user video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
 
 ## Plugin layout
 

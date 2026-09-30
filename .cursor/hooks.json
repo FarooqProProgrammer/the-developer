@@ -15,6 +15,17 @@
       {
         "command": "node \"D:/ai agent/the-developer/vendor/ponytail/hooks/ponytail-mode-tracker.js\"",
         "timeout": 5
+      },
+      {
+        "command": "node .cursor/hooks/frontend-mockup-first.js",
+        "timeout": 5
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "node .cursor/hooks/frontend-mockup-first.js",
+        "matcher": "Write|StrReplace|Edit",
+        "timeout": 5
       }
     ],
     "beforeReadFile": [
