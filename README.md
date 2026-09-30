@@ -1,10 +1,43 @@
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="the-developer — Cursor plugin for Spec-driven AI development with Ponytail and CodeGraph">
+</p>
+
 # the-developer
 
-Cursor **plugin** + Spec Kit companion for AI-assisted development.
+Cursor **plugin** that routes AI-assisted work from idea → design → Spec Kit → code. Ships Ponytail (write less), CodeGraph (navigate structure), and companion skills in one install.
 
-Full plugin docs: [PLUGIN.md](PLUGIN.md)
+Full plugin reference: [PLUGIN.md](PLUGIN.md)
 
-## Quick install (local plugin)
+<p align="center">
+  <img src="./assets/readme/workflow.svg" width="100%" alt="Feature flow: input, brainstorm, grill and feature list, Spec Kit, then implement">
+</p>
+
+## What you get
+
+| Layer | Role |
+|-------|------|
+| **Feature flow** | `input → brainstorming → grill-me / document / feature list → Spec Kit → implement` |
+| **Spec Kit** | Per-project specify → plan → tasks → implement → converge |
+| **Ponytail** | Minimal-code ladder (`rules/ponytail.mdc` + skills) |
+| **CodeGraph** | MCP `codegraph_explore` + sync hooks |
+| **Companion** | Review, debug, commit, grill, hallmark UI, React/Nest patterns, agent-browser |
+| **MCPs** | CodeGraph, Postgres / MySQL / MongoDB, Next.js `next-devtools`, Inspo |
+
+<details>
+<summary>Optional extras (Figma, HyperFrames, DB env)</summary>
+
+- **Figma → code** — `/figma-design-to-code` when Figma MCP is enabled (not bundled in `mcp.json`)
+- **Inspo** — real-site design refs via [inspomcp.dev](https://inspomcp.dev/)
+- **DB MCPs** — env vars in [`docs/mcp-databases.env.example`](docs/mcp-databases.env.example)
+- **HyperFrames demo** — `/hyperframes-demo` only when you ask for a video demo
+
+</details>
+
+<p align="center">
+  <img src="./assets/readme/section-install.svg" width="100%" alt="Install — local plugin, reload, Customize">
+</p>
+
+## Quick install (local)
 
 ```powershell
 .\scripts\install-plugin-local.ps1
@@ -12,20 +45,9 @@ Full plugin docs: [PLUGIN.md](PLUGIN.md)
 
 Then **Developer: Reload Window** → open **Customize** → confirm `the-developer`.
 
-## What you get
+Marketplace / team publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish)
 
-| Layer | Role |
-|-------|------|
-| Spec Kit (per project) | specify → plan → tasks → implement → converge |
-| Ponytail | Minimal code ladder (`rules/ponytail.mdc` + skills) |
-| CodeGraph | MCP `codegraph_explore` + sync hooks |
-| DB MCPs | Postgres / MySQL / MongoDB via `mcp.json` + env (see `docs/mcp-databases.env.example`) |
-| Next.js MCP | `next-devtools` (`next-devtools-mcp`) — use when the app is Next.js 16+ with `npm run dev` |
-| Inspo MCP | `inspo` ([inspomcp.dev](https://inspomcp.dev/)) — real-site design references for UI work |
-| Figma → code | `figma-design-to-code` when using Figma MCP (Cursor Figma plugin) |
-| Companion | review, debug, commit, grill, frontend-design, React best practices, agent-browser |
-
-## Host CLIs
+## Host CLIs (once per machine)
 
 ```bash
 npm i -g @colbymchenry/codegraph agent-browser
@@ -40,64 +62,60 @@ specify init --here --integration cursor-agent
 codegraph init
 ```
 
-## Chat commands
+## Start here
+
+| Command | When |
+|---------|------|
+| `/feature-pipeline` | New feature — full path end to end |
+| `/brainstorming` | Intent & design (stage 1 after input) |
+| `/grill-me` | Stress-test design before Spec Kit |
+| `/hallmark` | Any new UI or frontend visual update |
+| `/code-review` | Correctness / security review |
+| `/browser-test` | agent-browser QA |
+
+<details>
+<summary>More commands</summary>
 
 | Command | Does |
 |---------|------|
-| `/feature-pipeline` | Spec Kit SDD stages |
-| `/brainstorming` | Intent & design before creative work |
-| `/grill-me` | Stress-test the plan |
-| `/code-review` | Correctness review |
-| `/browser-test` | agent-browser QA |
 | `/codebase-design` | Deep modules / seams |
 | `/nodejs-backend-patterns` | Node.js API / backend patterns |
 | `/nestjs-best-practices` | NestJS architecture / DI / security |
-| `/nestjs-expert` | NestJS expert workflow + detailed guide |
+| `/nestjs-expert` | NestJS expert workflow + guide |
 | `/diagnose-bug` | Hard-bug diagnosis loop |
 | `/tdd` | Test-first red-green-refactor |
-| `/prototype` | Throwaway prototype before change |
+| `/prototype` | Throwaway probe before a change |
 | `/to-spec` | Conversation → spec/PRD (issue tracker) |
-| `/hyperframes-demo` | Optional HyperFrames video demo (user must ask) |
-| `/extract-meaning-full-insight` | Insight pack from a user document |
+| `/extract-meaning-full-insight` | Insight pack from a document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
-| `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
-| `/figma-design-to-code` | Figma MCP design → code (when Figma MCP enabled) |
-| `/ui-case-studies` | Settings & common-screen content defaults |
-| `/extract-modules-checklist` | Extract modules → checklist |
+| `/figma-design-to-code` | Figma MCP design → code |
+| `/ui-case-studies` | Settings & common-screen defaults |
+| `/extract-modules-checklist` | Modules → checklist before big refactors |
 | `/claude-delegate` | Delegate impl to Claude Code CLI |
+| `/hyperframes-demo` | Optional video demo (user must ask) |
 
-## Plugin package layout
+</details>
+
+## Plugin layout
 
 ```text
 .cursor-plugin/plugin.json   # Cursor Plugin manifest
 rules/                       # always-on + glob rules
-skills/                      # companion + ponytail + design/QA skills
+skills/                      # companion + ponytail + design/QA
 agents/the-developer.md
 commands/
 hooks/hooks.json             # CodeGraph sync
 scripts/codegraph-sync.js
-mcp.json                     # CodeGraph MCP
+mcp.json
 assets/logo.svg
 ```
 
-Publish: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish)
-
 ## Docs
 
+- [PLUGIN.md](PLUGIN.md) — install, MCP, usage in a project
 - [Cursor Plugins](https://cursor.com/docs/plugins)
 - [Spec Kit](https://github.com/github/spec-kit)
 - [Ponytail](https://github.com/DietrichGebert/ponytail)
 - [CodeGraph](https://github.com/colbymchenry/codegraph)
 - [agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)
-- [vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)
-- [nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)
-- [nestjs-best-practices](https://www.skills.sh/kadajett/agent-nestjs-skills/nestjs-best-practices)
-- [nestjs-expert](https://www.skills.sh/sickn33/agentic-awesome-skills/nestjs-expert)
-- [brainstorming](https://www.skills.sh/obra/superpowers/brainstorming)
-- [figma-design-to-code](https://www.skills.sh/figma/mcp-server-guide/figma-design-to-code)
-- [codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)
-- [diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)
-- [tdd](https://www.skills.sh/mattpocock/skills/tdd)
-- [prototype](https://www.skills.sh/mattpocock/skills/prototype)
-- [to-spec](https://www.skills.sh/mattpocock/skills/to-spec) (skills.sh still lists the old name [to-prd](https://www.skills.sh/mattpocock/skills/to-prd))
-- [claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)
+- [hallmark](https://github.com/nutlope/hallmark)

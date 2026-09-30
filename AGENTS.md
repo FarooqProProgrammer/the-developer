@@ -12,9 +12,16 @@ This companion combines:
 
 ## Route every request
 
-1. **Structural explore / “how does X work”** → MCP `codegraph_explore` first (not grep/Read loops). Hooks keep the index synced.
+### Canonical feature delivery
 
-2. **Feature / multi-step delivery** → Spec Kit skills in order. Do **not** invent a parallel pipeline.
+```text
+input → brainstorming → grill-me / document / feature list → Spec Kit → implement
+```
+
+1. **Input** — idea, doc, ticket, or Figma. Infer stack; ask once if unclear.
+2. **Brainstorming** → `.cursor/skills/brainstorming/SKILL.md` ([brainstorming](https://www.skills.sh/obra/superpowers/brainstorming)). Intent + design approval; hard gate before Spec Kit / product code.
+3. **Grill / document / feature list** → `/grill-me` (`.cursor/skills/grilling/SKILL.md`), write a short durable brief, scoped feature list (optional `/to-spec`). Confirm with the user.
+4. **Handover to Spec Kit** — feed brief + feature list into Spec Kit stages (do **not** invent a parallel pipeline):
 
    ```text
    /speckit-constitution   # if constitution not yet ratified / still placeholders
@@ -26,52 +33,54 @@ This companion combines:
    ```
 
    Optional: `/speckit-clarify`, `/speckit-checklist`, `/speckit-analyze`.
-   While implementing: Ponytail ladder + CodeGraph for navigation.
-   **Brainstorm first** for creative/feature design (`brainstorming`), then **prototype first** for every change request (see item 15) before implement.
+   Or invoke `/feature-pipeline` to run this whole flow stage-by-stage.
+   While implementing: Ponytail ladder + CodeGraph; optional `prototype` when a throwaway probe still helps.
 
-3. **Correctness / security review** → `.cursor/skills/code-review/SKILL.md`
+### Other intents
 
-4. **Over-engineering / delete-list** → `/ponytail-review` (or `/ponytail-audit`)
+5. **Structural explore / “how does X work”** → MCP `codegraph_explore` first (not grep/Read loops). Hooks keep the index synced.
 
-5. **Quick bug** → `.cursor/skills/debug/SKILL.md`
+6. **Correctness / security review** → `.cursor/skills/code-review/SKILL.md`
 
-6. **Commit** → `.cursor/skills/commit/SKILL.md`
+7. **Over-engineering / delete-list** → `/ponytail-review` (or `/ponytail-audit`)
 
-7. **Tiny fix / explain** → direct coding under standards + Ponytail; skip Spec Kit
+8. **Quick bug** → `.cursor/skills/debug/SKILL.md`
 
-8. **Frontend / UI design or update (required)** → `.cursor/skills/hallmark/SKILL.md` ([hallmark](https://github.com/nutlope/hallmark)) **must** load for any new UI, landing, or frontend visual update. Pair with `.cursor/skills/frontend-design/SKILL.md` and MCP `inspo` ([inspomcp.dev](https://inspomcp.dev/)) for real-site references. For Settings / Profile / Auth / Empty / Dashboard content defaults, load `.cursor/skills/ui-case-studies/SKILL.md`.
+9. **Commit** → `.cursor/skills/commit/SKILL.md`
 
-8b. **Figma design → code (optional)** → `.cursor/skills/figma-design-to-code/SKILL.md` ([figma-design-to-code](https://www.skills.sh/figma/mcp-server-guide/figma-design-to-code)) **before** Figma MCP `get_design_context`. Use when the user shares a Figma link/node or asks to implement a Figma screen. Requires Figma MCP authenticated in Cursor ([mcp-server-guide](https://github.com/figma/mcp-server-guide)). Then adapt with `hallmark` + project stack.
+10. **Tiny fix / explain** → direct coding under standards + Ponytail; skip Spec Kit
 
-9. **Grill / stress-test a plan or design** → `/grill-me` → load `.cursor/skills/grilling/SKILL.md` ([mattpocock/skills](https://www.skills.sh/mattpocock/skills/grill-me)). Do this before Spec Kit implement when the plan needs hardening.
+11. **Frontend / UI design or update (required)** → `.cursor/skills/hallmark/SKILL.md` ([hallmark](https://github.com/nutlope/hallmark)) **must** load for any new UI, landing, or frontend visual update. Pair with `.cursor/skills/frontend-design/SKILL.md` and MCP `inspo` ([inspomcp.dev](https://inspomcp.dev/)) for real-site references. For Settings / Profile / Auth / Empty / Dashboard content defaults, load `.cursor/skills/ui-case-studies/SKILL.md`.
 
-10. **Browser testing / QA / dogfooding** → `/agent-browser` → then run `agent-browser skills get core` (and `dogfood` for exploratory QA) before any browser commands ([vercel-labs/agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)). Prefer agent-browser over built-in browser tools for web app testing.
+11b. **Figma design → code (optional)** → `.cursor/skills/figma-design-to-code/SKILL.md` ([figma-design-to-code](https://www.skills.sh/figma/mcp-server-guide/figma-design-to-code)) **before** Figma MCP `get_design_context`. Use when the user shares a Figma link/node or asks to implement a Figma screen. Requires Figma MCP authenticated in Cursor ([mcp-server-guide](https://github.com/figma/mcp-server-guide)). Then adapt with `hallmark` + project stack.
 
-11. **React / Next.js performance** → `.cursor/skills/vercel-react-best-practices/SKILL.md` ([vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)) when writing, reviewing, or refactoring React/Next code.
+12. **Browser testing / QA / dogfooding** → `/agent-browser` → then run `agent-browser skills get core` (and `dogfood` for exploratory QA) before any browser commands ([vercel-labs/agent-browser](https://www.skills.sh/vercel-labs/agent-browser/agent-browser)). Prefer agent-browser over built-in browser tools for web app testing.
 
-11b. **Node.js backend / API** → `.cursor/skills/nodejs-backend-patterns/SKILL.md` ([nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)) when building or reviewing Express/Fastify services, middleware, auth, DB integration, or REST/GraphQL APIs. Read `references/details.md` for worked patterns.
+13. **React / Next.js performance** → `.cursor/skills/vercel-react-best-practices/SKILL.md` ([vercel-react-best-practices](https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)) when writing, reviewing, or refactoring React/Next code.
 
-11c. **NestJS** → `.cursor/skills/nestjs-best-practices/SKILL.md` ([nestjs-best-practices](https://www.skills.sh/kadajett/agent-nestjs-skills/nestjs-best-practices)) for the rule checklist, plus `.cursor/skills/nestjs-expert/SKILL.md` ([nestjs-expert](https://www.skills.sh/sickn33/agentic-awesome-skills/nestjs-expert)) for the expert workflow. Use when writing, reviewing, or refactoring NestJS modules, DI, auth/guards, security, performance, or microservices. Read `rules/*.md` / `references/detailed-guide.md` as needed.
+13b. **Node.js backend / API** → `.cursor/skills/nodejs-backend-patterns/SKILL.md` ([nodejs-backend-patterns](https://www.skills.sh/wshobson/agents/nodejs-backend-patterns)) when building or reviewing Express/Fastify services, middleware, auth, DB integration, or REST/GraphQL APIs. Read `references/details.md` for worked patterns.
 
-12. **Module / seam / deep-module design** → `.cursor/skills/codebase-design/SKILL.md` ([codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)).
+13c. **NestJS** → `.cursor/skills/nestjs-best-practices/SKILL.md` ([nestjs-best-practices](https://www.skills.sh/kadajett/agent-nestjs-skills/nestjs-best-practices)) for the rule checklist, plus `.cursor/skills/nestjs-expert/SKILL.md` ([nestjs-expert](https://www.skills.sh/sickn33/agentic-awesome-skills/nestjs-expert)) for the expert workflow. Use when writing, reviewing, or refactoring NestJS modules, DI, auth/guards, security, performance, or microservices. Read `rules/*.md` / `references/detailed-guide.md` as needed.
 
-12b. **Extract modules → checklist** → `.cursor/skills/extract-modules-checklist/SKILL.md`. Use before large refactors/migrations (see `rules/module-checklist.mdc`).
+14. **Module / seam / deep-module design** → `.cursor/skills/codebase-design/SKILL.md` ([codebase-design](https://www.skills.sh/mattpocock/skills/codebase-design)).
 
-13. **Hard bugs** → `.cursor/skills/diagnosing-bugs/SKILL.md` ([diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)) — prefer over the quick `debug` skill when the bug needs a feedback loop / bisection.
+14b. **Extract modules → checklist** → `.cursor/skills/extract-modules-checklist/SKILL.md`. Use before large refactors/migrations (see `rules/module-checklist.mdc`).
 
-14. **Test-first / red-green-refactor** → `.cursor/skills/tdd/SKILL.md` ([tdd](https://www.skills.sh/mattpocock/skills/tdd)). Confirm seams with the user before writing tests.
+15. **Hard bugs** → `.cursor/skills/diagnosing-bugs/SKILL.md` ([diagnosing-bugs](https://www.skills.sh/mattpocock/skills/diagnosing-bugs)) — prefer over the quick `debug` skill when the bug needs a feedback loop / bisection.
 
-15. **Every change request → brainstorm then prototype** → `.cursor/skills/brainstorming/SKILL.md` ([brainstorming](https://www.skills.sh/obra/superpowers/brainstorming)) when intent/design is open, then `.cursor/skills/prototype/SKILL.md` ([prototype](https://www.skills.sh/mattpocock/skills/prototype)). Build a throwaway LOGIC or UI prototype, get a verdict, then implement. Skip only if the user says so, or the ask is docs/typo/review/commit/explain with no behavior or UI change.
+16. **Test-first / red-green-refactor** → `.cursor/skills/tdd/SKILL.md` ([tdd](https://www.skills.sh/mattpocock/skills/tdd)). Confirm seams with the user before writing tests.
 
-16. **Conversation → spec/PRD** → `.cursor/skills/to-spec/SKILL.md` ([to-spec](https://www.skills.sh/mattpocock/skills/to-spec); formerly listed as [to-prd](https://www.skills.sh/mattpocock/skills/to-prd)). Synthesize a spec and publish to the issue tracker — no interview.
+17. **Validation probe during implement** → `.cursor/skills/prototype/SKILL.md` ([prototype](https://www.skills.sh/mattpocock/skills/prototype)) when one open question still needs a throwaway LOGIC/UI check. Skip if user says so, or ask is docs/typo/review/commit/explain.
 
-17. **End-user demo video (optional)** → `.cursor/skills/hyperframes-demo/SKILL.md` — only if the user explicitly asks for HyperFrames / a video demo; not part of the default feature path.
+18. **Conversation → spec/PRD (issue tracker)** → `.cursor/skills/to-spec/SKILL.md` ([to-spec](https://www.skills.sh/mattpocock/skills/to-spec); formerly [to-prd](https://www.skills.sh/mattpocock/skills/to-prd)). Useful for the feature-list handover step.
 
-18. **Document → full meaning / insights** → `.cursor/skills/extract-meaning-full-insight/SKILL.md`. Take the document from the user (attach / paste / path); produce the insight pack.
+19. **End-user demo video (optional)** → `.cursor/skills/hyperframes-demo/SKILL.md` — only if the user explicitly asks for HyperFrames / a video demo; not part of the default feature path.
 
-19. **Document → flowchart** → `.cursor/skills/document-to-flowchart/SKILL.md`. Take the document from the user; emit a Mermaid flowchart + legend.
+20. **Document → full meaning / insights** → `.cursor/skills/extract-meaning-full-insight/SKILL.md`. Take the document from the user (attach / paste / path); produce the insight pack.
 
-20. **Delegate to Claude Code CLI** → `.cursor/skills/claude-delegate/SKILL.md` ([claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)). Only when the user explicitly asks to delegate; orchestrate brief → review → land.
+21. **Document → flowchart** → `.cursor/skills/document-to-flowchart/SKILL.md`. Take the document from the user; emit a Mermaid flowchart + legend.
+
+22. **Delegate to Claude Code CLI** → `.cursor/skills/claude-delegate/SKILL.md` ([claude-delegate](https://www.skills.sh/amelnagdy/delegate-skills/claude-delegate)). Only when the user explicitly asks to delegate; orchestrate brief → review → land.
 
 ## Public page SEO
 
@@ -100,7 +109,7 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 ## Hard rules
 
 - Never invent a stack. Infer from request + repo; ask once if unclear.
-- Do not skip Spec Kit stages unless the user asks.
+- Do not skip canonical pipeline stages (`input → brainstorming → grill/doc/features → Spec Kit → implement`) unless the user asks.
 - Respect `.specify/memory/constitution.md`.
 - Prefer the smallest change that satisfies the request (Ponytail).
 - Do not commit/push unless the user asks.

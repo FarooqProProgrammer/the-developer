@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="wtitle wdesc">
+  <title id="wtitle">Feature delivery workflow</title>
+  <desc id="wdesc">Five stages: input, brainstorming, grill and feature list, Spec Kit, then implement with Ponytail and CodeGraph.</desc>
+  <rect width="1200" height="400" rx="26" fill="#0B1220"/>
+  <rect x="1" y="1" width="1198" height="398" rx="25" fill="none" stroke="#1E293B" stroke-width="1"/>
+  <text x="56" y="52" fill="#64748B" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="600" letter-spacing="1.5">HOW IT WORKS</text>
+  <text x="56" y="96" fill="#F8FAFC" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="36" font-weight="700">Idea in. Specced code out.</text>
+  <text x="56" y="134" fill="#94A3B8" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20">One chat command runs the whole delivery path.</text>
+  <g transform="translate(56 168)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    <g transform="translate(20 0)">
+      <rect width="184" height="160" rx="16" fill="#0F172A" stroke="#134E4A" stroke-width="1.5"/>
+      <circle cx="28" cy="30" r="13" fill="#134E4A"/>
+      <text x="23" y="35" fill="#5EEAD4" font-size="15" font-weight="700">1</text>
+      <text x="50" y="36" fill="#5EEAD4" font-size="18" font-weight="700">Input</text>
+      <text x="22" y="74" fill="#E2E8F0" font-size="20" font-weight="600">Ticket, doc,</text>
+      <text x="22" y="102" fill="#E2E8F0" font-size="20" font-weight="600">or Figma</text>
+      <text x="22" y="136" fill="#64748B" font-size="16">infer stack</text>
+      <path d="M192 80 L206 80" stroke="#334155" stroke-width="2"/>
+      <polygon points="206,74 218,80 206,86" fill="#5EEAD4"/>
+      <g transform="translate(226 0)">
+        <rect width="184" height="160" rx="16" fill="#0F172A" stroke="#0C4A6E" stroke-width="1.5"/>
+        <circle cx="28" cy="30" r="13" fill="#0C4A6E"/>
+        <text x="23" y="35" fill="#38BDF8" font-size="15" font-weight="700">2</text>
+        <text x="50" y="36" fill="#38BDF8" font-size="18" font-weight="700">Brainstorm</text>
+        <text x="22" y="74" fill="#E2E8F0" font-size="20" font-weight="600">Intent +</text>
+        <text x="22" y="102" fill="#E2E8F0" font-size="20" font-weight="600">design gate</text>
+        <text x="22" y="136" fill="#64748B" font-size="16">/brainstorming</text>
+      </g>
+      <path d="M418 80 L432 80" stroke="#334155" stroke-width="2"/>
+      <polygon points="432,74 444,80 432,86" fill="#38BDF8"/>
+      <g transform="translate(452 0)">
+        <rect width="184" height="160" rx="16" fill="#0F172A" stroke="#3B1F36" stroke-width="1.5"/>
+        <circle cx="28" cy="30" r="13" fill="#3B1F36"/>
+        <text x="23" y="35" fill="#F472B6" font-size="15" font-weight="700">3</text>
+        <text x="50" y="36" fill="#F472B6" font-size="18" font-weight="700">Grill / list</text>
+        <text x="22" y="74" fill="#E2E8F0" font-size="20" font-weight="600">Stress-test</text>
+        <text x="22" y="102" fill="#E2E8F0" font-size="20" font-weight="600">+ features</text>
+        <text x="22" y="136" fill="#64748B" font-size="16">/grill-me</text>
+      </g>
+      <path d="M644 80 L658 80" stroke="#334155" stroke-width="2"/>
+      <polygon points="658,74 670,80 658,86" fill="#F472B6"/>
+      <g transform="translate(678 0)">
+        <rect width="184" height="160" rx="16" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+        <circle cx="28" cy="30" r="13" fill="#1E293B"/>
+        <text x="23" y="35" fill="#E2E8F0" font-size="15" font-weight="700">4</text>
+        <text x="50" y="36" fill="#E2E8F0" font-size="18" font-weight="700">Spec Kit</text>
+        <text x="22" y="74" fill="#E2E8F0" font-size="20" font-weight="600">specify -&gt;</text>
+        <text x="22" y="102" fill="#E2E8F0" font-size="20" font-weight="600">plan -&gt; tasks</text>
+        <text x="22" y="136" fill="#64748B" font-size="16">/speckit-*</text>
+      </g>
+      <path d="M870 80 L884 80" stroke="#334155" stroke-width="2"/>
+      <polygon points="884,74 896,80 884,86" fill="#5EEAD4"/>
+      <g transform="translate(904 0)">
+        <rect width="164" height="160" rx="16" fill="#134E4A"/>
+        <circle cx="28" cy="30" r="13" fill="#5EEAD4"/>
+        <text x="23" y="35" fill="#0B1220" font-size="15" font-weight="700">5</text>
+        <text x="50" y="36" fill="#F8FAFC" font-size="18" font-weight="700">Ship</text>
+        <text x="22" y="74" fill="#F8FAFC" font-size="20" font-weight="600">Implement</text>
+        <text x="22" y="102" fill="#99F6E4" font-size="20" font-weight="600">+ converge</text>
+        <text x="22" y="136" fill="#5EEAD4" font-size="16">Ponytail</text>
+      </g>
+    </g>
+  </g>
+</svg>

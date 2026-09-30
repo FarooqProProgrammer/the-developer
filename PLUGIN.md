@@ -4,6 +4,8 @@ AI development companion packaged as a **[Cursor Plugin](https://cursor.com/docs
 
 Bundles rules, skills, commands, hooks, an agent, and CodeGraph MCP for Spec-driven delivery with Ponytail minimalism.
 
+**Canonical feature flow:** `input → brainstorming → grill-me / document / feature list → Spec Kit → implement` (see `/feature-pipeline`).
+
 ## Install (local test)
 
 ```powershell
@@ -91,7 +93,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 1. Install this plugin (user or project scope)
 2. In the app repo: `specify init --here --integration cursor-agent` (once)
 3. `codegraph init` in that repo
-4. Chat: `/feature-pipeline` for features, `/brainstorming` before creative work, `/hallmark` for any UI design/update, `/figma-design-to-code` when implementing from Figma MCP, `/nodejs-backend-patterns` for Node APIs/backends, `/nestjs-best-practices` / `/nestjs-expert` for NestJS apps, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
+4. Chat: `/feature-pipeline` for features (`input → brainstorming → grill-me / document / feature list → Spec Kit → implement`), `/hallmark` for any UI design/update, `/figma-design-to-code` when implementing from Figma MCP, `/nodejs-backend-patterns` for Node APIs/backends, `/nestjs-best-practices` / `/nestjs-expert` for NestJS apps, `/extract-modules-checklist` before large refactors, `/claude-delegate` when explicitly delegating to Claude Code CLI, `/to-spec` for feature-list → issue tracker, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, optional `/hyperframes-demo` only when you want a video demo, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
 
 ## Plugin layout
 

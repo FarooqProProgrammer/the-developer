@@ -7,15 +7,25 @@ alwaysApply: true
 
 Classify the user request before acting. When writing or changing code, apply the Ponytail ladder (`rules/ponytail.mdc`). For structural navigation, prefer MCP `codegraph_explore` (plugin hooks sync the graph on session start, reads, and edits).
 
-## Spec Kit SDD (features)
+## Canonical feature delivery
 
-Use when the ask needs product intent, design choices, or multi-step delivery:
+For new features / multi-step product work, follow this order (also `/feature-pipeline`):
 
-- New feature or capability
-- API, auth, migration, redesign
-- Multi-file architecture decisions
+```text
+input → brainstorming → grill-me / document / feature list → Spec Kit → implement
+```
 
-Run Spec Kit skills in order (Cursor chat, not terminal) — requires Spec Kit in the target project (`specify init --here --integration cursor-agent`):
+1. **Input** — request, doc, ticket, or Figma; infer stack; ask once if unclear.
+2. **Brainstorming** — `brainstorming` (intent + design approval; hard gate before Spec Kit / product code).
+3. **Grill / document / feature list** — `/grill-me` to stress-test; write a short durable brief; produce a scoped feature list (optional `/to-spec`). Wait for confirmation.
+4. **Handover to Spec Kit** — feed the brief + feature list into `/speckit-specify` → plan → tasks (constitution/clarify/analyze as needed).
+5. **Implement** — optional `prototype` probe, then `/speckit-implement` → `/speckit-converge`.
+
+Skip this pipeline only for pure docs / typo / review / commit / explain, or when the user explicitly skips stages.
+
+## Spec Kit SDD (after handover)
+
+Requires Spec Kit in the target project (`specify init --here --integration cursor-agent`):
 
 1. `/speckit-constitution` — only if constitution missing or still placeholders
 2. `/speckit-specify`
@@ -23,21 +33,19 @@ Run Spec Kit skills in order (Cursor chat, not terminal) — requires Spec Kit i
 4. `/speckit-plan`
 5. `/speckit-tasks`
 6. `/speckit-analyze` / `/speckit-checklist` — optional quality gates
-7. `/speckit-implement` — climb Ponytail ladder while coding; public pages need SEO tags (see `seo-public-pages`); **prototype first** for change requests (see `prototype`)
+7. `/speckit-implement` — climb Ponytail ladder while coding; public pages need SEO tags (see `seo-public-pages`); **prototype** when a quick validation probe still helps
 8. `/speckit-converge` — repeat with implement until Converged
 
-Or invoke command `/feature-pipeline`. Do **not** invent a custom Speckit pipeline.
+Do **not** invent a custom Speckit pipeline. Stack: infer from the request + repo.
 
-Stack: infer from the request + repo. If unclear, ask once before specify/plan.
+## Change request → prototype (within implement)
 
-## Change request → prototype first
-
-For **every change request** (new feature, behavior change, UI change, or non-trivial bugfix that redesigns flow), load `brainstorming` when intent/design is still open, then `prototype` **before** Spec Kit implement / direct coding:
+During implement (or for a bounded change after brainstorm/grill), load `prototype` when a throwaway LOGIC/UI probe still answers one open question:
 
 1. State the single question the prototype answers.
 2. Choose LOGIC (state/business model) or UI (look/feel variants) per the skill.
 3. Build throwaway, trivial-to-run code near the real module/page.
-4. Capture the user's verdict, then implement the validated decision (Spec Kit / TDD / Ponytail as usual).
+4. Capture the user's verdict, then continue Spec Kit implement / TDD / Ponytail.
 
 **Skip prototype only when** the user explicitly says so, or the ask is pure docs / typo / review / commit / explanation with no behavior or UI change.
 
@@ -49,8 +57,12 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 
 | Intent | Skill |
 |--------|--------|
-| Creative work / new feature — intent & design before code | `brainstorming` |
-| Change request (feature / UI / behavior) — prototype first | `prototype` |
+| Feature delivery (canonical pipeline) | `/feature-pipeline` |
+| Creative work / new feature — intent & design | `brainstorming` |
+| Stress-test design before Spec Kit | `grill-me` → `grilling` |
+| User document → insight pack / flowchart | `extract-meaning-full-insight` / `document-to-flowchart` |
+| Publish feature list / PRD to tracker | `to-spec` |
+| Validation probe during implement | `prototype` |
 | Correctness / security / maintainability review | `code-review` |
 | Over-engineering / delete-list on a diff | `ponytail-review` |
 | Whole-repo over-engineering audit | `ponytail-audit` |
@@ -62,7 +74,6 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | New frontend screen / page | **Mockup first** (same palette) → then implement (`frontend-mockup-first`) |
 | Common screen content (Settings, Profile, Auth, …) | `ui-case-studies` |
 | Frontend visual update / redesign / UI audit | **`hallmark`** (`audit` / `redesign` / `study` as appropriate) |
-| Grill / stress-test a plan or design | `grill-me` → then `grilling` |
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
 | React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |
 | Node.js backend / API / middleware / auth / DB service | `nodejs-backend-patterns` |
@@ -71,10 +82,7 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Extract modules → actionable checklist | `extract-modules-checklist` |
 | Hard bug (feedback loop / bisection) | `diagnosing-bugs` |
 | Test-first / red-green-refactor | `tdd` |
-| Conversation → spec/PRD for issue tracker | `to-spec` |
 | End-user video demo (HyperFrames) — **optional, user must ask** | `hyperframes-demo` |
-| Document → full meaning / insight pack | `extract-meaning-full-insight` |
-| Document → Mermaid flowchart | `document-to-flowchart` |
 | Explicitly delegate impl to Claude Code CLI | `claude-delegate` |
 
 ## CodeGraph
@@ -83,6 +91,6 @@ Structural questions (call graph, definitions, blast radius, how X reaches Y) �
 
 ## Direct coding
 
-Use for one-file fixes, explanations, small refactors, and questions that do not need a written what/why — **after** the prototype gate when the change alters behavior or UI.
+Use for one-file fixes, explanations, small refactors, and questions that do not need a written what/why — **after** brainstorm/grill when the change was creative, and after any agreed prototype gate.
 
 Follow coding standards, constitution, and the Ponytail ladder.

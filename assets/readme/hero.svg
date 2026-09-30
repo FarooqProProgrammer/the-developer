@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">the-developer - Cursor plugin for Spec-driven AI development</title>
+  <desc id="desc">Routes work from idea through brainstorming, grill, Spec Kit, and implement with Ponytail and CodeGraph.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="chevron" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="358" rx="25" fill="none" stroke="#1E293B" stroke-width="1"/>
+  <g transform="translate(56 48)">
+    <rect width="56" height="56" rx="14" fill="#0F172A" stroke="#1E293B"/>
+    <path d="M14 28 L24 18 L24 24 L36 24 L36 32 L24 32 L24 38 Z" fill="#5EEAD4"/>
+    <path d="M42 28 L32 38 L32 32 L20 32 L20 24 L32 24 L32 18 Z" fill="#38BDF8" opacity="0.9"/>
+    <circle cx="42" cy="16" r="4" fill="#F472B6"/>
+  </g>
+  <text x="128" y="72" fill="#64748B" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="600" letter-spacing="1.5">CURSOR PLUGIN</text>
+  <text x="128" y="128" fill="#F8FAFC" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="52" font-weight="700">the-developer</text>
+  <text x="56" y="188" fill="#94A3B8" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22">Spec Kit routing + Ponytail minimalism + CodeGraph</text>
+  <text x="56" y="222" fill="#94A3B8" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22">in one Cursor install.</text>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748B">
+    <text x="56" y="278">v1.0.0</text>
+    <text x="130" y="278">|</text>
+    <text x="150" y="278">MIT</text>
+    <text x="200" y="278">|</text>
+    <text x="220" y="278">/feature-pipeline</text>
+  </g>
+  <g transform="translate(700 48)">
+    <rect width="444" height="264" rx="18" fill="#0F172A" stroke="#1E293B"/>
+    <text x="28" y="40" fill="#64748B" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16">canonical flow</text>
+    <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="600">
+      <rect x="28" y="62" width="120" height="40" rx="10" fill="#134E4A"/>
+      <text x="48" y="88" fill="#5EEAD4">input</text>
+      <path d="M156 82 L176 82" stroke="#334155" stroke-width="2"/>
+      <polygon points="176,76 188,82 176,88" fill="#5EEAD4"/>
+      <rect x="196" y="62" width="168" height="40" rx="10" fill="#0C4A6E"/>
+      <text x="214" y="88" fill="#38BDF8">brainstorm</text>
+      <rect x="28" y="126" width="120" height="40" rx="10" fill="#3B1F36"/>
+      <text x="52" y="152" fill="#F472B6">grill</text>
+      <path d="M156 146 L176 146" stroke="#334155" stroke-width="2"/>
+      <polygon points="176,140 188,146 176,152" fill="#F472B6"/>
+      <rect x="196" y="126" width="168" height="40" rx="10" fill="#1E293B"/>
+      <text x="224" y="152" fill="#E2E8F0">feature list</text>
+      <rect x="28" y="190" width="336" height="40" rx="10" fill="url(#chevron)"/>
+      <text x="92" y="216" fill="#0B1220" font-weight="700">Spec Kit -&gt; implement</text>
+    </g>
+  </g>
+</svg>

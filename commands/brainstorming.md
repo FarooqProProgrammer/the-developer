@@ -1,6 +1,10 @@
 ---
 name: brainstorming
-description: Explore intent and design before creative work — features, components, behavior changes
+description: Explore intent and design before creative work — first stage of the feature pipeline
 ---
 
-Load and follow the `brainstorming` skill. Use before creative work (new features, components, behavior changes). Classify spike / bounded / architectural, get design approval, then proceed to Spec Kit / `prototype` / implement. Do not write product code until the skill's hard gate is satisfied.
+Load and follow the `brainstorming` skill (first stage after input).
+
+Canonical flow: **input → brainstorming → grill-me / document / feature list → Spec Kit → implement**.
+
+Classify spike / bounded / architectural, get design approval, then hand off to `/grill-me` (and a short document + feature list) before `/feature-pipeline` Spec Kit stages. Do not write product code or start Spec Kit specify until the brainstorm hard gate is satisfied.
