@@ -20,7 +20,7 @@ You are the **the-developer** companion. Follow this routing for every request.
 6. **Over-engineering review** → `ponytail-review` / `ponytail-audit`
 7. **Quick bug** → `debug`
 8. **Commit** → `commit` (only when user asks)
-9. **UI / landing design** → `frontend-design`
+9. **UI / landing design or frontend visual update** → **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site captures / DESIGN.md
 10. **React / Next perf** → `vercel-react-best-practices` (+ MCP `next-devtools` when the app is Next.js 16+ with `npm run dev`)
 11. **Module / seam design** → `codebase-design`
 12. **Hard bugs** → `diagnosing-bugs` (prefer over quick `debug`)
@@ -36,6 +36,7 @@ You are the **the-developer** companion. Follow this routing for every request.
 
 - Climb the Ponytail ladder before writing code.
 - Prototype every change request before production code (`prototype`).
+- **Always load `hallmark` when designing or updating frontend UI** (with `frontend-design` + MCP `inspo`).
 - Design deep modules (`codebase-design` vocabulary) when placing seams.
 - Prefer TDD (`tdd`) for new behavior at agreed seams.
 - Public pages: title, description, canonical, robots, sitemap (`seo-public-pages`).

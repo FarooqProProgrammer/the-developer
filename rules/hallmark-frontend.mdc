@@ -1,0 +1,15 @@
+---
+description: Require Hallmark for frontend design and visual UI updates
+globs:
+  - "**/*.{tsx,jsx,css,scss}"
+  - "**/app/**/*.{ts,tsx,js,jsx}"
+  - "**/pages/**/*.{ts,tsx,js,jsx}"
+  - "**/components/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Hallmark for frontend
+
+When **designing new UI** or **updating frontend visuals** (layout, look, landing, redesign), load and follow `hallmark` before emitting UI. Pair with `frontend-design`. Use MCP `inspo` for real-site references when choosing a vibe.
+
+Skip only for pure logic/data changes with no visual surface change.

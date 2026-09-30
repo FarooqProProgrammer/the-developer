@@ -39,7 +39,7 @@ This companion combines:
 
 7. **Tiny fix / explain** → direct coding under standards + Ponytail; skip Spec Kit
 
-8. **Frontend / UI design** → `.cursor/skills/frontend-design/SKILL.md` ([anthropics/skills](https://www.skills.sh/anthropics/skills/frontend-design))
+8. **Frontend / UI design or update (required)** → `.cursor/skills/hallmark/SKILL.md` ([hallmark](https://github.com/nutlope/hallmark)) **must** load for any new UI, landing, or frontend visual update. Pair with `.cursor/skills/frontend-design/SKILL.md` and MCP `inspo` ([inspomcp.dev](https://inspomcp.dev/)) for real-site references.
 
 9. **Grill / stress-test a plan or design** → `/grill-me` → load `.cursor/skills/grilling/SKILL.md` ([mattpocock/skills](https://www.skills.sh/mattpocock/skills/grill-me)). Do this before Spec Kit implement when the plan needs hardening.
 
@@ -103,6 +103,7 @@ Do **not** add `.cursor/rules/ponytail.mdc` while hooks are installed.
 - **CodeGraph** — MCP, `.codegraph/`, sync hooks, `codegraph.mdc`
 - **DB MCP** — `postgres` / `mysql` / `mongodb` in `mcp.json` (credentials via env; see `docs/mcp-databases.env.example`)
 - **Next.js MCP** — `next-devtools` (`next-devtools-mcp`); for Next.js 16+ with a running dev server
+- **Inspo MCP** — `inspo` ([inspomcp.dev](https://inspomcp.dev/)); real-site design archive for UI / landing taste
 - **agent-browser** — browser testing CLI + `.cursor/skills/agent-browser/` (load `agent-browser skills get core` / `dogfood` before use)
-- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`
+- **Companion** — `code-review`, `debug`, `commit`, `frontend-design`, `hallmark`, `grill-me` / `grilling`, `vercel-react-best-practices`, `codebase-design`, `diagnosing-bugs`, `tdd`, `prototype`, `to-spec`, `hyperframes-demo`, `extract-meaning-full-insight`, `document-to-flowchart`
 - **HyperFrames demos** — `hyperframes-demo` (+ personal `/hyperframes` / `/hyperframes-cli` skills when present)

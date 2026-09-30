@@ -56,7 +56,8 @@ When building public UI routes, enforce the `seo-public-pages` rule: title, desc
 | Bug / error / failing test (quick) | `debug` |
 | Commit / write message | `commit` |
 | Ponytail level / help | `ponytail`, `ponytail-help` |
-| New UI / landing / distinctive frontend design | `frontend-design` |
+| New UI / landing / distinctive frontend design | **`hallmark` (required)** + `frontend-design`; MCP `inspo` for real-site refs |
+| Frontend visual update / redesign / UI audit | **`hallmark`** (`audit` / `redesign` / `study` as appropriate) |
 | Grill / stress-test a plan or design | `grill-me` → then `grilling` |
 | Browser test / screenshot / fill form / QA | `agent-browser` (then `agent-browser skills get core`) |
 | React / Next.js write, review, or perf refactor | `vercel-react-best-practices` (+ MCP `next-devtools` if Next.js) |

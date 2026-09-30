@@ -21,6 +21,7 @@ Then **Developer: Reload Window** → open **Customize** → confirm `the-develo
 | CodeGraph | MCP `codegraph_explore` + sync hooks |
 | DB MCPs | Postgres / MySQL / MongoDB via `mcp.json` + env (see `docs/mcp-databases.env.example`) |
 | Next.js MCP | `next-devtools` (`next-devtools-mcp`) — use when the app is Next.js 16+ with `npm run dev` |
+| Inspo MCP | `inspo` ([inspomcp.dev](https://inspomcp.dev/)) — real-site design references for UI work |
 | Companion | review, debug, commit, grill, frontend-design, React best practices, agent-browser |
 
 ## Host CLIs
@@ -54,6 +55,7 @@ codegraph init
 | `/hyperframes-demo` | End-user demo via HyperFrames CLI |
 | `/extract-meaning-full-insight` | Insight pack from a user document |
 | `/document-to-flowchart` | Document → Mermaid flowchart |
+| `/hallmark` | Anti-AI-slop UI (required for frontend design/update) |
 
 ## Plugin package layout
 

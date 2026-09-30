@@ -6,6 +6,8 @@ license: Complete terms in LICENSE.txt
 
 # Frontend Design
 
+**Required companion:** before building or updating frontend UI, also load and follow `hallmark` (anti-AI-slop gates, structural variety). Prefer MCP `inspo` for real-site references.
+
 Approach this as the design lead at a design studio known for giving every client a distinct visual identity that is not mistaken for anyone else's. This client has already rejected proposals that felt cliché or templated, and is paying for a distinctive point of view: make deliberate, opinionated choices about palette, typography, and layout that are specific to this brief, and take aesthetic risk if justified.
 
 ## Ground your designs in the subject matter

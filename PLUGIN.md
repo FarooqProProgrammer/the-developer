@@ -33,11 +33,11 @@ Or run:
 | Component | Contents |
 |-----------|----------|
 | **Rules** | Intent router, coding standards, Ponytail ladder, CodeGraph, SEO public pages, React best-practices gate, git branch safety |
-| **Skills** | code-review, debug, commit, frontend-design, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, codebase-design, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo, extract-meaning-full-insight, document-to-flowchart |
-| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart` |
+| **Skills** | code-review, debug, commit, frontend-design, **hallmark**, grill-me/grilling, ponytail*, agent-browser, vercel-react-best-practices, codebase-design, diagnosing-bugs, tdd, prototype, to-spec, hyperframes-demo, extract-meaning-full-insight, document-to-flowchart |
+| **Commands** | `/feature-pipeline`, `/grill-me`, `/code-review`, `/browser-test`, `/codebase-design`, `/diagnose-bug`, `/tdd`, `/prototype`, `/to-spec`, `/hyperframes-demo`, `/extract-meaning-full-insight`, `/document-to-flowchart`, `/hallmark` |
 | **Agent** | `the-developer` |
 | **Hooks** | CodeGraph sync on `sessionStart`, `beforeReadFile`, `afterFileEdit` |
-| **MCP** | `codegraph`, `postgres`, `mysql`, `mongodb`, `next-devtools` (DB URLs via env — see below) |
+| **MCP** | `codegraph`, `postgres`, `mysql`, `mongodb`, `next-devtools`, `inspo` (DB URLs via env — see below) |
 
 **Not bundled:** Spec Kit CLI/skills (install per project with `specify init --here --integration cursor-agent`). Ponytail mode hooks (plugin uses always-on `rules/ponytail.mdc` instead).
 
@@ -61,6 +61,20 @@ Ships by default as `next-devtools` → `npx -y next-devtools-mcp@latest` ([Next
 
 Agent flow: `nextjs_index` → `nextjs_call` / `nextjs_docs` as needed. Harmless in non-Next workspaces (discovery returns no servers).
 
+## Inspo MCP (design archive)
+
+Ships by default as `inspo` → hosted [https://inspomcp.dev/api/mcp](https://inspomcp.dev/api/mcp) ([Inspo](https://inspomcp.dev/)).
+
+Pulls real production-site captures, DESIGN.md, components, and palettes for UI taste. Use with **`hallmark`** (required for frontend design/update) and `frontend-design`.
+
+Optional local stdio: `"inspo": { "command": "npx", "args": ["-y", "inspo-mcp"] }`. Optional env: `TOGETHER_API_KEY`, `INSPO_PROFILE=lite|full`, `INSPO_IMAGES=thumbs|none`.
+
+## Hallmark (required for frontend)
+
+Skill from [nutlope/hallmark](https://github.com/nutlope/hallmark). **Must** load when designing new UI or updating frontend visuals (`/hallmark`). Verbs: default build, `audit`, `redesign`, `study`.
+
+## External CLIs (host machine)
+
 ```bash
 npm i -g @colbymchenry/codegraph agent-browser
 codegraph install   # wire agents if needed
@@ -73,7 +87,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 1. Install this plugin (user or project scope)
 2. In the app repo: `specify init --here --integration cursor-agent` (once)
 3. `codegraph init` in that repo
-4. Chat: `/feature-pipeline` for features, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, `/hyperframes-demo` for an end-user video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
+4. Chat: `/feature-pipeline` for features, `/hallmark` for any UI design/update, `/prototype` before changes, `/to-spec` for a conversation→spec/PRD, `/extract-meaning-full-insight` for document insights, `/document-to-flowchart` for process diagrams, `/hyperframes-demo` for an end-user video demo, `/grill-me` to stress-test, `/codebase-design` for seams, `/tdd` for test-first work, `/diagnose-bug` for hard bugs, `/browser-test` for QA
 
 ## Plugin layout
 
