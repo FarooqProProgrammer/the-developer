@@ -1,12 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "agy-delegate": {
-      "source": "amelnagdy/delegate-skills",
-      "sourceType": "github",
-      "skillPath": "skills/agy-delegate/SKILL.md",
-      "computedHash": "6de409a754480365da0e5ee44ec1a189ba243e1116fa1ff44472461434cb3533"
-    },
     "hallmark": {
       "source": "nutlope/hallmark",
       "sourceType": "github",
