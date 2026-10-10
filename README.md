@@ -8,19 +8,50 @@
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Installation & Usage
 
-Install all bundled skills directly into your project's `.agents/skills` directory:
+You can use this toolkit immediately via **GitHub** (no npm publishing required) or via **npm registry**:
 
+### Option 1: Direct via `npx` (Recommended · Zero Install)
+Run directly from GitHub without installing anything to your project or machine:
+```bash
+# Install skills into current project
+npx github:FarooqProProgrammer/the-developer install
+
+# Or install into a specific directory/app
+npx github:FarooqProProgrammer/the-developer install ./my-web-app
+```
+
+### Option 2: Project Dependency via `npm install`
+Add it as a dependency in your project:
+```bash
+# Using GitHub shorthand
+npm install github:FarooqProProgrammer/the-developer
+
+# Or using the full repository URL
+npm install https://github.com/FarooqProProgrammer/the-developer.git
+```
+Then run the setup CLI:
 ```bash
 npx the-developer install
 ```
 
-Or install globally:
-
+### Option 3: Global System Installation
+Install globally on your machine so the `the-developer` CLI is always available everywhere:
 ```bash
-npm install -g the-developer
+npm install -g github:FarooqProProgrammer/the-developer
+
+# Now run anywhere in any terminal:
 the-developer install
+the-developer list
+the-developer mcp
+```
+
+### Option 4: Standard npm Registry (If published)
+```bash
+npx the-developer install
+# or
+npm install -g the-developer
 ```
 
 ---
