@@ -8,18 +8,41 @@
 
 ---
 
-## ⚡ Installation & Usage
+## ⚡ Installation & Multi-Agent Ecosystems
 
-You can use this toolkit immediately via **GitHub** (no npm publishing required) or via **npm registry**:
+`the-developer` works natively across all major AI coding environments. Use the `--target` flag to install the skills where your AI agent reads them:
+
+| AI Assistant / IDE | Target Directory | Install Flag |
+| :--- | :--- | :--- |
+| **Google Antigravity** *(default)* | `.agents/skills/` | `--target=antigravity` |
+| **Cursor IDE** | `.cursor/skills/` | `--target=cursor` |
+| **Claude Code** | `.claude/skills/` | `--target=claude` |
+| **Windsurf / Codeium** | `.windsurf/skills/` | `--target=windsurf` |
+| **GitHub Copilot** | `.github/skills/` | `--target=copilot` |
+| **All Platforms (Simultaneous)** | *All above directories* | `--target=all` or `--all` |
+
+---
 
 ### Option 1: Direct via `npx` (Recommended · Zero Install)
 Run directly from GitHub without installing anything to your project or machine:
 ```bash
-# Install skills into current project
+# Default: installs to Google Antigravity (.agents/skills)
 npx github:FarooqProProgrammer/the-developer install
 
-# Or install into a specific directory/app
-npx github:FarooqProProgrammer/the-developer install ./my-web-app
+# For Cursor IDE (.cursor/skills)
+npx github:FarooqProProgrammer/the-developer install --target=cursor
+
+# For Claude Code (.claude/skills)
+npx github:FarooqProProgrammer/the-developer install --target=claude
+
+# For Windsurf (.windsurf/skills)
+npx github:FarooqProProgrammer/the-developer install --target=windsurf
+
+# Install into ALL supported AI assistants at once:
+npx github:FarooqProProgrammer/the-developer install --all
+
+# Or into a specific directory/app with target flag:
+npx github:FarooqProProgrammer/the-developer install ./my-web-app --target=cursor
 ```
 
 ### Option 2: Project Dependency via `npm install`
@@ -33,7 +56,9 @@ npm install https://github.com/FarooqProProgrammer/the-developer.git
 ```
 Then run the setup CLI:
 ```bash
-npx the-developer install
+npx the-developer install --target=cursor
+# or
+npx the-developer install --all
 ```
 
 ### Option 3: Global System Installation
@@ -42,14 +67,16 @@ Install globally on your machine so the `the-developer` CLI is always available 
 npm install -g github:FarooqProProgrammer/the-developer
 
 # Now run anywhere in any terminal:
-the-developer install
+the-developer install --target=cursor
+the-developer install --target=claude
+the-developer install --all
 the-developer list
 the-developer mcp
 ```
 
 ### Option 4: Standard npm Registry (If published)
 ```bash
-npx the-developer install
+npx the-developer install --all
 # or
 npm install -g the-developer
 ```

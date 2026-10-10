@@ -40,6 +40,30 @@ const SKILLS = [
   }
 ];
 
+// Target ecosystem mapping
+const ECOSYSTEM_TARGETS = {
+  antigravity: {
+    label: 'Google Antigravity',
+    relPath: path.join('.agents', 'skills')
+  },
+  cursor: {
+    label: 'Cursor IDE',
+    relPath: path.join('.cursor', 'skills')
+  },
+  claude: {
+    label: 'Claude Code',
+    relPath: path.join('.claude', 'skills')
+  },
+  windsurf: {
+    label: 'Windsurf / Codeium',
+    relPath: path.join('.windsurf', 'skills')
+  },
+  copilot: {
+    label: 'GitHub Copilot',
+    relPath: path.join('.github', 'skills')
+  }
+};
+
 function printHeader() {
   console.log('\x1b[1m\x1b[36m');
   console.log('╭──────────────────────────────────────────────────────────╮');
@@ -54,17 +78,26 @@ function printHelp() {
   console.log(`\x1b[1mUSAGE:\x1b[0m`);
   console.log(`  npx the-developer <command> [options]\n`);
   console.log(`\x1b[1mCOMMANDS:\x1b[0m`);
-  console.log(`  \x1b[32minstall [dir]\x1b[0m     Install all bundled skills into target directory (default: current directory)`);
-  console.log(`  \x1b[32mlist\x1b[0m              List all available skills and descriptions`);
-  console.log(`  \x1b[32minfo <skill>\x1b[0m      Display detailed documentation for a specific skill`);
-  console.log(`  \x1b[32mmcp\x1b[0m               Print recommended MCP server configurations (Inspo, Stitch, etc.)`);
-  console.log(`  \x1b[32m--version, -v\x1b[0m     Show version`);
-  console.log(`  \x1b[32m--help, -h\x1b[0m        Show this help message\n`);
+  console.log(`  \x1b[32minstall [dir] [flags]\x1b[0m   Install skills into target ecosystem(s) (default: antigravity / .agents/skills)`);
+  console.log(`  \x1b[32mlist\x1b[0m                   List all available skills and descriptions`);
+  console.log(`  \x1b[32minfo <skill>\x1b[0m           Display detailed documentation for a specific skill`);
+  console.log(`  \x1b[32mmcp\x1b[0m                    Print recommended MCP server configurations (Inspo, Stitch, etc.)`);
+  console.log(`  \x1b[32m--version, -v\x1b[0m          Show version`);
+  console.log(`  \x1b[32m--help, -h\x1b[0m             Show this help message\n`);
+  console.log(`\x1b[1mINSTALL TARGET FLAGS:\x1b[0m`);
+  console.log(`  \x1b[33m--target=antigravity\x1b[0m   Install to .agents/skills (default)`);
+  console.log(`  \x1b[33m--target=cursor\x1b[0m        Install to .cursor/skills (Cursor IDE)`);
+  console.log(`  \x1b[33m--target=claude\x1b[0m        Install to .claude/skills (Claude Code)`);
+  console.log(`  \x1b[33m--target=windsurf\x1b[0m      Install to .windsurf/skills (Windsurf)`);
+  console.log(`  \x1b[33m--target=copilot\x1b[0m       Install to .github/skills (GitHub Copilot)`);
+  console.log(`  \x1b[33m--target=all, --all\x1b[0m    Install to ALL supported ecosystems simultaneously\n`);
   console.log(`\x1b[1mEXAMPLES:\x1b[0m`);
   console.log(`  npx the-developer install`);
-  console.log(`  npx the-developer install ./my-project`);
-  console.log(`  npx the-developer list`);
-  console.log(`  npx the-developer info scroll-craft\n`);
+  console.log(`  npx the-developer install --target=cursor`);
+  console.log(`  npx the-developer install --target=claude`);
+  console.log(`  npx the-developer install --all`);
+  console.log(`  npx the-developer install ./my-project --target=cursor`);
+  console.log(`  npx the-developer list\n`);
 }
 
 function listSkills() {
@@ -73,7 +106,8 @@ function listSkills() {
   for (const skill of SKILLS) {
     console.log(`  \x1b[33m• ${skill.name.padEnd(28)}\x1b[0m ${skill.description}`);
   }
-  console.log('\nInstall them into your project using: \x1b[36mnpx the-developer install\x1b[0m\n');
+  console.log('\nSupported Ecosystems: \x1b[36mAntigravity, Cursor, Claude Code, Windsurf, Copilot\x1b[0m');
+  console.log('Install them using: \x1b[36mnpx the-developer install [--target=<name> | --all]\x1b[0m\n');
 }
 
 function showSkillInfo(skillName) {
@@ -111,10 +145,9 @@ function copyDirectory(src, dest) {
   }
 }
 
-function installSkills(targetDir = process.cwd()) {
+function installSkills(targetDir = process.cwd(), targets = ['antigravity']) {
   printHeader();
-  const resolvedTarget = path.resolve(process.cwd(), targetDir);
-  const targetSkillsDir = path.join(resolvedTarget, '.agents', 'skills');
+  const resolvedTargetBase = path.resolve(process.cwd(), targetDir);
   const sourceSkillsDir = path.join(packageRoot, '.agents', 'skills');
 
   if (!fs.existsSync(sourceSkillsDir)) {
@@ -122,35 +155,64 @@ function installSkills(targetDir = process.cwd()) {
     process.exit(1);
   }
 
-  console.log(`Installing skills to: \x1b[33m${targetSkillsDir}\x1b[0m\n`);
-
-  fs.mkdirSync(targetSkillsDir, { recursive: true });
-
-  let installedCount = 0;
-  for (const skill of SKILLS) {
-    const src = path.join(sourceSkillsDir, skill.folder);
-    const dest = path.join(targetSkillsDir, skill.folder);
-
-    if (fs.existsSync(src)) {
-      copyDirectory(src, dest);
-      console.log(`  \x1b[32m✔\x1b[0m Installed \x1b[1m${skill.name}\x1b[0m`);
-      installedCount++;
-    } else {
-      console.log(`  \x1b[31m✖\x1b[0m Skipped ${skill.name} (source missing)`);
+  // Resolve ecosystems
+  let targetEcosystems = [];
+  if (targets.includes('all')) {
+    targetEcosystems = Object.keys(ECOSYSTEM_TARGETS);
+  } else {
+    for (const t of targets) {
+      const clean = t.toLowerCase();
+      if (ECOSYSTEM_TARGETS[clean]) {
+        targetEcosystems.push(clean);
+      } else {
+        console.warn(`\x1b[33mWarning: Unknown ecosystem target "${t}". Supported: ${Object.keys(ECOSYSTEM_TARGETS).join(', ')}, all\x1b[0m`);
+      }
+    }
+    if (targetEcosystems.length === 0) {
+      targetEcosystems = ['antigravity'];
     }
   }
 
-  // Also write/merge skills-lock.json if appropriate
-  const lockSource = path.join(packageRoot, 'skills-lock.json');
-  if (fs.existsSync(lockSource)) {
-    const destLock = path.join(resolvedTarget, 'skills-lock.json');
-    if (!fs.existsSync(destLock)) {
-      fs.copyFileSync(lockSource, destLock);
+  console.log(`Target Directory:  \x1b[36m${resolvedTargetBase}\x1b[0m`);
+  console.log(`Ecosystem(s):      \x1b[32m${targetEcosystems.map((k) => ECOSYSTEM_TARGETS[k].label).join(', ')}\x1b[0m\n`);
+
+  let totalInstalled = 0;
+
+  for (const ecoKey of targetEcosystems) {
+    const eco = ECOSYSTEM_TARGETS[ecoKey];
+    const destinationDir = path.join(resolvedTargetBase, eco.relPath);
+
+    console.log(`\x1b[1m📂 Installing for ${eco.label} -> ${destinationDir}\x1b[0m`);
+    fs.mkdirSync(destinationDir, { recursive: true });
+
+    let count = 0;
+    for (const skill of SKILLS) {
+      const src = path.join(sourceSkillsDir, skill.folder);
+      const dest = path.join(destinationDir, skill.folder);
+
+      if (fs.existsSync(src)) {
+        copyDirectory(src, dest);
+        console.log(`  \x1b[32m✔\x1b[0m [${ecoKey}] Installed \x1b[1m${skill.name}\x1b[0m`);
+        count++;
+      } else {
+        console.log(`  \x1b[31m✖\x1b[0m Skipped ${skill.name} (source missing)`);
+      }
     }
+    totalInstalled += count;
+
+    // Write skills-lock.json if in root
+    const lockSource = path.join(packageRoot, 'skills-lock.json');
+    if (fs.existsSync(lockSource)) {
+      const destLock = path.join(resolvedTargetBase, 'skills-lock.json');
+      if (!fs.existsSync(destLock)) {
+        fs.copyFileSync(lockSource, destLock);
+      }
+    }
+    console.log('');
   }
 
-  console.log(`\n\x1b[1m\x1b[32mSuccessfully installed ${installedCount} skills!\x1b[0m`);
-  console.log(`Your AI agents in Antigravity, Cursor, and Claude Code can now discover and use these skills.\n`);
+  console.log(`\x1b[1m\x1b[32m✨ Done! Successfully installed skills across ${targetEcosystems.length} ecosystem(s).\x1b[0m`);
+  console.log(`Your AI assistants (${targetEcosystems.map((k) => ECOSYSTEM_TARGETS[k].label).join(', ')}) will now automatically discover these skills.\n`);
 }
 
 function printMcpConfig() {
@@ -185,24 +247,46 @@ function printMcpConfig() {
 }
 
 // Argument parsing
-const args = process.argv.slice(2);
-const command = args[0] || '--help';
+const rawArgs = process.argv.slice(2);
+const command = rawArgs[0] && !rawArgs[0].startsWith('-') ? rawArgs[0] : (rawArgs.includes('-h') || rawArgs.includes('--help') ? '--help' : (rawArgs.includes('-v') || rawArgs.includes('--version') ? '--version' : 'install'));
+
+let parsedDir = process.cwd();
+const targetList = [];
+
+for (const arg of rawArgs) {
+  if (arg === '--all' || arg === '-a') {
+    targetList.push('all');
+  } else if (arg.startsWith('--target=')) {
+    const val = arg.split('=')[1];
+    if (val) {
+      val.split(',').forEach((t) => targetList.push(t.trim()));
+    }
+  } else if (arg.startsWith('-t=')) {
+    const val = arg.split('=')[1];
+    if (val) {
+      val.split(',').forEach((t) => targetList.push(t.trim()));
+    }
+  } else if (arg !== 'install' && arg !== 'add' && !arg.startsWith('-')) {
+    parsedDir = arg;
+  }
+}
 
 switch (command) {
   case 'install':
   case 'add':
-    installSkills(args[1]);
+    installSkills(parsedDir, targetList.length > 0 ? targetList : ['antigravity']);
     break;
   case 'list':
   case 'ls':
     listSkills();
     break;
   case 'info':
-    if (!args[1]) {
+    const skillArg = rawArgs.find((a) => !a.startsWith('-') && a !== 'info');
+    if (!skillArg) {
       console.error('\x1b[31mError: Please specify a skill name. Example: npx the-developer info hallmark\x1b[0m');
       process.exit(1);
     }
-    showSkillInfo(args[1]);
+    showSkillInfo(skillArg);
     break;
   case 'mcp':
     printMcpConfig();
