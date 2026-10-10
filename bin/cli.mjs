@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
-import { agentNames, parseWorkflowArgs, initFullstack, scaffold, verify } from './workflow.mjs';
+import { installToolkit, platforms } from './installer.mjs';
+import { agentNames, parseWorkflowArgs, scaffold, verify } from './workflow.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -46,35 +47,16 @@ const SKILLS = [
   }
 ];
 
-// Target ecosystem mapping
-const ECOSYSTEM_TARGETS = {
-  antigravity: {
-    label: 'Google Antigravity',
-    relPath: path.join('.agents', 'skills')
-  },
-  cursor: {
-    label: 'Cursor IDE',
-    relPath: path.join('.cursor', 'skills')
-  },
-  claude: {
-    label: 'Claude Code',
-    relPath: path.join('.claude', 'skills')
-  },
-  windsurf: {
-    label: 'Windsurf / Codeium',
-    relPath: path.join('.windsurf', 'skills')
-  },
-  copilot: {
-    label: 'GitHub Copilot',
-    relPath: path.join('.github', 'skills')
-  }
-};
+for (const name of fs.readdirSync(path.join(packageRoot, 'workflows/skills'))) {
+  const content = fs.readFileSync(path.join(packageRoot, 'workflows/skills', name, 'SKILL.md'), 'utf8');
+  SKILLS.push({ name, folder: name, description: content.match(/^description: (.*)$/m)[1], fullstack: true });
+}
 
 function printHeader() {
   console.log('\x1b[1m\x1b[36m');
   console.log('╭──────────────────────────────────────────────────────────╮');
   console.log('│                    THE-DEVELOPER                         │');
-  console.log(`│       AI Agent Skills Suite for Frontend Design v${packageJson.version.padEnd(8)}│`);
+  console.log(`│       Full-Stack Agent Workflow Toolkit       v${packageJson.version.padEnd(8)}│`);
   console.log('╰──────────────────────────────────────────────────────────╯');
   console.log('\x1b[0m');
 }
@@ -84,9 +66,11 @@ function printHelp() {
   console.log(`\x1b[1mUSAGE:\x1b[0m`);
   console.log(`  npx the-developer <command> [options]\n`);
   console.log(`\x1b[1mCOMMANDS:\x1b[0m`);
-  console.log(`  \x1b[32minstall [dir] [flags]\x1b[0m   Install skills into target ecosystem(s) (default: antigravity / .agents/skills)`);
+  console.log(`  \x1b[32minstall [dir] [flags]\x1b[0m   Install the full toolkit (default: antigravity; --all for every host)`);
   console.log('  init [dir] --preset=frontend|fullstack [--target=cursor]');
   console.log('  specify|plan|tasks|verify <feature> [--project=dir]');
+  console.log('  targets                          Show host capabilities');
+  console.log('  install [dir] --all [--dry-run]    All skills, agents, hooks and workflows');
   console.log('  agents list                      List portable role definitions');
   console.log(`  \x1b[32mlist\x1b[0m                   List all available skills and descriptions`);
   console.log(`  \x1b[32minfo <skill>\x1b[0m           Display detailed documentation for a specific skill`);
@@ -99,7 +83,8 @@ function printHelp() {
   console.log(`  \x1b[33m--target=claude\x1b[0m        Install to .claude/skills (Claude Code)`);
   console.log(`  \x1b[33m--target=windsurf\x1b[0m      Install to .windsurf/skills (Windsurf)`);
   console.log(`  \x1b[33m--target=copilot\x1b[0m       Install to .github/skills (GitHub Copilot)`);
-  console.log(`  \x1b[33m--target=all, --all\x1b[0m    Install to ALL supported ecosystems simultaneously\n`);
+  console.log('  --target=codex          Install Codex role TOML and shared skills');
+  console.log(`  \x1b[33m--target=all, --all\x1b[0m    Install to all six supported ecosystems\n`);
   console.log(`\x1b[1mEXAMPLES:\x1b[0m`);
   console.log(`  npx the-developer install`);
   console.log(`  npx the-developer install --target=cursor`);
@@ -115,7 +100,7 @@ function listSkills() {
   for (const skill of SKILLS) {
     console.log(`  \x1b[33m• ${skill.name.padEnd(28)}\x1b[0m ${skill.description}`);
   }
-  console.log('\nSupported Ecosystems: \x1b[36mAntigravity, Cursor, Claude Code, Windsurf, Copilot\x1b[0m');
+  console.log('\nSupported Ecosystems: \x1b[36mAntigravity, Cursor, Claude Code, Windsurf, Copilot, Codex\x1b[0m');
   console.log('Install them using: \x1b[36mnpx the-developer install [--target=<name> | --all]\x1b[0m\n');
 }
 
@@ -127,7 +112,7 @@ function showSkillInfo(skillName) {
     process.exit(1);
   }
 
-  const skillFilePath = path.join(packageRoot, '.agents', 'skills', skill.folder, 'SKILL.md');
+  const skillFilePath = path.join(packageRoot, skill.fullstack ? 'workflows' : '.agents', 'skills', skill.folder, 'SKILL.md');
   if (!fs.existsSync(skillFilePath)) {
     console.error(`\x1b[31mError: Documentation for "${skillName}" not found.\x1b[0m`);
     process.exit(1);
@@ -136,117 +121,6 @@ function showSkillInfo(skillName) {
   const content = fs.readFileSync(skillFilePath, 'utf8');
   console.log(`\x1b[1m\x1b[34m=== ${skill.name} ===\x1b[0m\n`);
   console.log(content);
-}
-
-function checkCopy(src, dest) {
-  let current = path.resolve(dest);
-  while (true) {
-    if (fs.existsSync(current) && fs.lstatSync(current).isSymbolicLink()) throw new Error(`Refusing symlink: ${current}`);
-    const parent = path.dirname(current);
-    if (parent === current) break;
-    current = parent;
-  }
-  if (fs.existsSync(dest) && !fs.statSync(dest).isDirectory()) throw new Error(`Expected directory: ${dest}`);
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    const source = path.join(src, entry.name), destination = path.join(dest, entry.name);
-    if (entry.isDirectory()) checkCopy(source, destination);
-    else if (fs.existsSync(destination) && (fs.lstatSync(destination).isSymbolicLink() || !fs.statSync(destination).isFile() || !fs.readFileSync(source).equals(fs.readFileSync(destination)))) {
-      throw new Error(`Existing file differs; refusing to overwrite ${destination}`);
-    }
-  }
-}
-
-function copyDirectory(src, dest) {
-  fs.mkdirSync(dest, { recursive: true });
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDirectory(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
-  }
-}
-
-function installSkills(targetDir = process.cwd(), targets = ['antigravity']) {
-  printHeader();
-  const resolvedTargetBase = path.resolve(process.cwd(), targetDir);
-  const sourceSkillsDir = path.join(packageRoot, '.agents', 'skills');
-
-  if (!fs.existsSync(sourceSkillsDir)) {
-    console.error(`\x1b[31mError: Source skills directory not found in package.\x1b[0m`);
-    process.exit(1);
-  }
-
-  // Resolve ecosystems
-  let targetEcosystems = [];
-  if (targets.includes('all')) {
-    targetEcosystems = Object.keys(ECOSYSTEM_TARGETS);
-  } else {
-    for (const t of targets) {
-      const clean = t.toLowerCase();
-      if (ECOSYSTEM_TARGETS[clean]) {
-        targetEcosystems.push(clean);
-      } else {
-        console.warn(`\x1b[33mWarning: Unknown ecosystem target "${t}". Supported: ${Object.keys(ECOSYSTEM_TARGETS).join(', ')}, all\x1b[0m`);
-      }
-    }
-    if (targetEcosystems.length === 0) {
-      targetEcosystems = ['antigravity'];
-    }
-  }
-
-  console.log(`Target Directory:  \x1b[36m${resolvedTargetBase}\x1b[0m`);
-  console.log(`Ecosystem(s):      \x1b[32m${targetEcosystems.map((k) => ECOSYSTEM_TARGETS[k].label).join(', ')}\x1b[0m\n`);
-
-  // Validate every destination before copying any skill.
-  for (const ecoKey of targetEcosystems) {
-    for (const skill of SKILLS) {
-      const source = path.join(sourceSkillsDir, skill.folder);
-      if (fs.existsSync(source)) checkCopy(source, path.join(resolvedTargetBase, ECOSYSTEM_TARGETS[ecoKey].relPath, skill.folder));
-    }
-  }
-  let totalInstalled = 0;
-
-  for (const ecoKey of targetEcosystems) {
-    const eco = ECOSYSTEM_TARGETS[ecoKey];
-    const destinationDir = path.join(resolvedTargetBase, eco.relPath);
-
-    console.log(`\x1b[1m📂 Installing for ${eco.label} -> ${destinationDir}\x1b[0m`);
-    fs.mkdirSync(destinationDir, { recursive: true });
-
-    let count = 0;
-    for (const skill of SKILLS) {
-      const src = path.join(sourceSkillsDir, skill.folder);
-      const dest = path.join(destinationDir, skill.folder);
-
-      if (fs.existsSync(src)) {
-        copyDirectory(src, dest);
-        console.log(`  \x1b[32m✔\x1b[0m [${ecoKey}] Installed \x1b[1m${skill.name}\x1b[0m`);
-        count++;
-      } else {
-        console.log(`  \x1b[31m✖\x1b[0m Skipped ${skill.name} (source missing)`);
-      }
-    }
-    totalInstalled += count;
-
-    // Write skills-lock.json if in root
-    const lockSource = path.join(packageRoot, 'skills-lock.json');
-    if (fs.existsSync(lockSource)) {
-      const destLock = path.join(resolvedTargetBase, 'skills-lock.json');
-      if (!fs.existsSync(destLock)) {
-        fs.copyFileSync(lockSource, destLock);
-      }
-    }
-    console.log('');
-  }
-
-  console.log(`\x1b[1m\x1b[32m✨ Done! Successfully installed skills across ${targetEcosystems.length} ecosystem(s).\x1b[0m`);
-  console.log(`Your AI assistants (${targetEcosystems.map((k) => ECOSYSTEM_TARGETS[k].label).join(', ')}) will now automatically discover these skills.\n`);
 }
 
 function printMcpConfig() {
@@ -284,37 +158,21 @@ function printMcpConfig() {
 const rawArgs = process.argv.slice(2);
 const command = rawArgs[0] && !rawArgs[0].startsWith('-') ? rawArgs[0] : (rawArgs.includes('-h') || rawArgs.includes('--help') ? '--help' : (rawArgs.includes('-v') || rawArgs.includes('--version') ? '--version' : 'install'));
 
-let parsedDir = process.cwd();
-const targetList = [];
-
-for (const arg of rawArgs) {
-  if (arg === '--all' || arg === '-a') {
-    targetList.push('all');
-  } else if (arg.startsWith('--target=')) {
-    const val = arg.split('=')[1];
-    if (val) {
-      val.split(',').forEach((t) => targetList.push(t.trim()));
-    }
-  } else if (arg.startsWith('-t=')) {
-    const val = arg.split('=')[1];
-    if (val) {
-      val.split(',').forEach((t) => targetList.push(t.trim()));
-    }
-  } else if (arg !== 'install' && arg !== 'add' && !arg.startsWith('-')) {
-    parsedDir = arg;
-  }
-}
-
 try {
 switch (command) {
+  case 'install':
+  case 'add':
   case 'init': {
-    const { options, positionals } = parseWorkflowArgs(rawArgs.slice(1));
-    if (positionals.length > 1) throw new Error('init accepts one project directory.');
-    const project = path.resolve(positionals[0] ?? options.project);
-    if (options.preset === 'fullstack') initFullstack(project, options.target);
-    installSkills(project, [options.target]);
+    const { options, positionals } = parseWorkflowArgs(rawArgs.slice(rawArgs[0]?.startsWith('-') ? 0 : 1));
+    if (positionals.length > 1) throw new Error('Installation accepts one project directory.');
+    const hasPreset = rawArgs.some(a => a === '--preset' || a.startsWith('--preset='));
+    const preset = command === 'init' || hasPreset ? options.preset : 'fullstack';
+    installToolkit(positionals[0] ?? options.project, options.target.split(','), preset, options.dryRun);
     break;
   }
+  case 'targets':
+    console.log(Object.entries(platforms).map(([name,p]) => `${name}: ${p.agents}; hooks: ${p.hooks}`).join('\n'));
+    break;
   case 'agents':
     if (rawArgs.length !== 2 || rawArgs[1] !== 'list') throw new Error('Usage: the-developer agents list');
     console.log(agentNames.join('\n'));
@@ -329,10 +187,6 @@ switch (command) {
     else scaffold(command, options.project, positionals[0]);
     break;
   }
-  case 'install':
-  case 'add':
-    installSkills(parsedDir, targetList.length > 0 ? targetList : ['antigravity']);
-    break;
   case 'list':
   case 'ls':
     listSkills();

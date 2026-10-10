@@ -9,17 +9,19 @@ function run(...args) { return spawnSync(process.execPath, [cli, ...args], { enc
 function temporary(fn) { const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'developer-test-')); try { fn(dir); } finally { fs.rmSync(dir, { recursive: true, force: true }); } }
 function pass(...args) { const result = run(...args); assert.equal(result.status, 0, result.stderr); return result.stdout; }
 test('legacy listing and all skill documentation work', () => {
-  assert.match(pass('list'), /Available Skills & Agents \(6\)/);
+  assert.match(pass('list'), /Available Skills & Agents \(13\)/);
   for (const name of ['css-design-tokens','frontend-designer','hallmark','micro-animation-interaction','scroll-craft','tailwindcss']) assert.match(pass('info', name), /\S/);
 });
 test('both presets work across all targets and fullstack initialization is repeatable', () => temporary(dir => {
-  for (const target of ['antigravity','cursor','claude','windsurf','copilot']) {
+  for (const target of ['antigravity','cursor','claude','windsurf','copilot','codex']) {
     const project = path.join(dir, target);
     pass('init', project, '--preset=fullstack', `--target=${target}`);
     pass('init', project, '--preset=fullstack', `--target=${target}`);
-    const ecosystem = {antigravity:'.agents',cursor:'.cursor',claude:'.claude',windsurf:'.windsurf',copilot:'.github'}[target];
-    assert.equal(fs.readdirSync(path.join(project, ecosystem, 'agents')).length, 9);
-    assert.equal(fs.readdirSync(path.join(project, ecosystem, 'skills')).length, 6);
+    const ecosystem = {antigravity:'.agents',cursor:'.cursor',claude:'.claude',windsurf:'.windsurf',copilot:'.github',codex:'.codex'}[target];
+    if (target === 'antigravity' || target === 'windsurf') {
+      assert.equal(fs.readdirSync(path.join(project,ecosystem,'workflows')).filter(n => n.startsWith('role-')).length,9);
+    } else assert.equal(fs.readdirSync(path.join(project, ecosystem, 'agents')).length, 9);
+    assert.equal(fs.readdirSync(path.join(project, target === 'codex' ? '.agents' : ecosystem, 'skills')).length, 19);
     assert(fs.existsSync(path.join(project, '.specs/constitution.md')));
   }
   const frontend = path.join(dir, 'frontend'); pass('init', frontend);

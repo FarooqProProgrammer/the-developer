@@ -1,21 +1,12 @@
 import fs from 'node:fs';
+import { platforms, projectPath, installToolkit } from './installer.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const assets = path.join(root, 'workflows');
 export const agentNames = fs.readdirSync(path.join(assets, 'agents')).filter(n => n.endsWith('.md')).map(n => n.slice(0, -3));
-const targets = { antigravity: '.agents', cursor: '.cursor', claude: '.claude', windsurf: '.windsurf', copilot: '.github' };
-
-function safePath(base, relative) {
-  const resolved = path.resolve(base, relative);
-  if (!resolved.startsWith(path.resolve(base) + path.sep)) throw new Error('Path must stay inside the project.');
-  let current = path.resolve(base);
-  for (const part of relative.split(path.sep)) {
-    current = path.join(current, part);
-    if (fs.existsSync(current) && fs.lstatSync(current).isSymbolicLink()) throw new Error(`Refusing symlink: ${current}`);
-  }
-  return resolved;
-}
+const targets = Object.fromEntries(Object.entries(platforms).map(([name, p]) => [name, p.base]));
+const safePath = projectPath;
 function writeFiles(base, files) {
   const planned = files.map(([name, content]) => [safePath(base, name), content]);
   for (const [file, content] of planned) {
@@ -32,6 +23,9 @@ export function parseWorkflowArgs(args) {
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (!arg.startsWith('-')) { positionals.push(arg); continue; }
+    if (arg === '--all' || arg === '-a') { options.target = 'all'; continue; }
+    if (arg.startsWith('-t=')) { options.target = arg.slice(3); continue; }
+    if (arg === '--dry-run') { options.dryRun = true; continue; }
     const match = arg.match(/^--(preset|target|project)(?:=(.*))?$/);
     if (!match) throw new Error(`Unknown option: ${arg}`);
     const value = match[2] ?? args[++i];
@@ -39,15 +33,11 @@ export function parseWorkflowArgs(args) {
     options[match[1]] = value;
   }
   if (!['frontend', 'fullstack'].includes(options.preset)) throw new Error('Preset must be frontend or fullstack.');
-  if (!targets[options.target]) throw new Error(`Unsupported target: ${options.target}`);
+  if (options.target !== 'all' && options.target.split(',').some(t => !targets[t])) throw new Error(`Unsupported target: ${options.target}`);
   return { options, positionals };
 }
 export function initFullstack(project, target) {
-  const files = [['.specs/constitution.md', fs.readFileSync(path.join(assets, 'templates/constitution.md'), 'utf8')]];
-  for (const name of agentNames) files.push([`${targets[target]}/agents/${name}.md`, fs.readFileSync(path.join(assets, 'agents', `${name}.md`), 'utf8')]);
-  files.push(['.specs/WORKFLOW.md', `# Full-stack workflow\n\nRead constitution.md and the role definitions in ${targets[target]}/agents/.\n\nUse specify, plan and tasks to create feature documents. Replace TODOs with project decisions before implementation. Use verify to check document completeness; run the actual project tests separately and record evidence in verification.md.\n\nThese role definitions are portable instructions, not automatically registered native subagents. The host must map roles to its delegation tool when supported and permitted. Otherwise execute roles sequentially. The orchestrator owns integration.\n`]);
-  writeFiles(path.resolve(project), files);
-  console.log(`Full-stack workflow and ${agentNames.length} agent definitions initialized in ${path.resolve(project)}.`);
+  installToolkit(project, target.split(','), 'fullstack');
 }
 function featureDir(project, feature) {
   if (!feature || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(feature)) throw new Error('Use a lowercase feature name such as 001-user-auth.');

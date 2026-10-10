@@ -1,226 +1,153 @@
 # the-developer
 
-> A toolkit for frontend and full-stack engineering, with design skills, portable agent roles, and spec-driven workflows.
-> Built for **Google Antigravity**, **Cursor**, **Claude Code**, and compatible agentic development tools.
+A full-stack development toolkit with 13 engineering and design skills, nine agent roles, six workflow stages, and configurable lifecycle checks. No runtime npm dependencies; Node.js 18 or newer is required.
 
-[![npm version](https://img.shields.io/npm/v/the-developer.svg)](https://www.npmjs.com/package/the-developer)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Install everything with one command
 
----
-
-## Full-stack workflow
-
-Initialize a project using the local checkout:
+Run from the project you want to equip:
 
 ```bash
-node /path/to/the-developer/bin/cli.mjs init ./my-project --preset=fullstack --target=cursor
-cd my-project
-node /path/to/the-developer/bin/cli.mjs specify 001-user-auth
-node /path/to/the-developer/bin/cli.mjs plan 001-user-auth
-node /path/to/the-developer/bin/cli.mjs tasks 001-user-auth
-node /path/to/the-developer/bin/cli.mjs verify 001-user-auth
+npx github:FarooqProProgrammer/the-developer install --all
 ```
 
-After installing the package, use `the-developer` in place of the Node command. Commands also accept `--project=/path/to/project`. `init` defaults to the existing `frontend` preset and Antigravity target; the `fullstack` preset includes all six frontend skills plus nine role definitions and the project constitution.
+Or provide a project directory:
 
-Generated structure (Cursor target shown):
+```bash
+npx github:FarooqProProgrammer/the-developer install ./my-project --all
+```
+
+This installs skills, assistant-specific agent definitions, workflow commands, templates, and hook configuration where supported. It does not start agent processes, install a web framework, or require AI provider credentials.
+
+From a checkout of this repository:
+
+```bash
+node /path/to/the-developer/bin/cli.mjs install ./my-project --all
+```
+
+Use `--dry-run` to preview without writing, `--target=claude,codex` to select hosts, or `--preset=frontend` for the original six design skills. `install` defaults to the full-stack preset and Antigravity target. `init` retains the frontend preset by default; use `init --preset=fullstack --all` for the complete toolkit.
+
+Existing settings and hooks are merged additively. A manifest records generated files so unchanged managed files can be refreshed. Modified files are protected: conflicts stop installation before writes. No force-overwrite mode is provided. Existing conflicting Codex role tables require manual reconciliation. Back up project configuration before upgrading; this is a file installer, not a filesystem transaction across disk failures.
+
+## Assistant adapters
+
+| Target | Skills | Agent definitions | Workflow entry points | Checks |
+| --- | --- | --- | --- | --- |
+| Claude Code | `.claude/skills/` | `.claude/agents/*.md`, inherited model | `.claude/commands/` and workflow skills | Stop hook in `.claude/settings.json` |
+| Cursor | `.cursor/skills/` | `.cursor/agents/*.md` | `.cursor/commands/` and workflow skills | Advisory stop hook in `.cursor/hooks.json` |
+| GitHub Copilot | `.github/skills/` | `.github/agents/*.agent.md` | `.github/prompts/*.prompt.md` | Session-end hook in `.github/hooks/the-developer.json` (CLI/cloud agent) |
+| Codex | `.agents/skills/` | `.codex/agents/*.toml`, registered in `.codex/config.toml` | Workflow skills | Stop hook in current Codex configuration |
+| Windsurf | `.windsurf/skills/` | Role workflows in `.windsurf/workflows/` | `.windsurf/workflows/` | Shared runner, manual or CI |
+| Antigravity | `.agents/skills/` | Role workflows in `.agents/workflows/` | `.agents/workflows/` | Shared runner, manual or CI |
+
+Each platform gets its own definitions generated from the canonical roles in `workflows/agents/`. Installed canonical copies live in `.developer/agents/`. The installer does not treat every assistant as if it has the same subagent API. Windsurf and Antigravity receive sequential role workflows; Copilot receives custom profiles whose delegation capabilities depend on the host.
+
+Reload your assistant after installation and trust the project only after reviewing configuration. Host versions, policies, and trust settings can disable agent discovery or hooks. Codex hooks require a version supporting lifecycle hooks; older clients may need the generated `hooks.Stop` table removed. The adapter files are tested by this repository, but live assistant execution is not covered by the CLI test suite.
+
+Run `the-developer targets` to display capabilities. See `.developer/INSTALLATION.md` in the installed project for local instructions.
+
+## Skills
+
+The full-stack preset contains these 13 skills, plus six workflow skills:
+
+| Area | Skills |
+| --- | --- |
+| Full-stack engineering | `fullstack-development`, `backend-development`, `database-migrations`, `api-contracts` |
+| Verification and delivery | `quality-assurance`, `security-review`, `devops-delivery` |
+| Frontend design | `css-design-tokens`, `frontend-designer`, `hallmark`, `micro-animation-interaction`, `scroll-craft`, `tailwindcss` |
+
+Use `the-developer list` and `the-developer info backend-development` to inspect bundled instructions. Skills guide the assistant; they do not install their subject's runtime dependencies.
+
+## Agent hierarchy
 
 ```text
-.cursor/
-  agents/                 # Nine portable role definitions
-  skills/                 # Existing frontend design skills
+orchestrator
+  product-analyst -> architect
+    frontend-developer + backend-developer
+    database-engineer (when persistence changes)
+  qa-engineer -> integrated review
+  security-reviewer (when trust boundaries change)
+  devops-engineer (when runtime or delivery changes)
+```
+
+Every role defines purpose, inputs, file ownership, deliverables, completion criteria, and handoff rules. The orchestrator selects only the roles needed, agrees on contracts before parallel work, prevents overlapping file ownership, and verifies the integrated result. Small fixes may use a short sequential plan. Project permissions still govern whether delegation is allowed.
+
+## Spec-driven workflow
+
+`Idea -> specify -> plan -> tasks -> implement -> verify -> review`
+
+```bash
+the-developer specify 001-user-auth --project=./my-project
+the-developer plan 001-user-auth --project=./my-project
+the-developer tasks 001-user-auth --project=./my-project
+the-developer verify 001-user-auth --project=./my-project
+```
+
+After each scaffold stage, fill in the generated document before moving forward. The CLI creates templates; it does not call an AI provider or generate architecture decisions. Use the installed `developer-implement` and `developer-review` workflows in your assistant for implementation and review.
+
+```text
+.developer/
+  agents/                  # Canonical role instructions
+  workflows/               # Six stages
+  templates/               # Reusable spec, plan, tasks and evidence templates
+  hooks/check.mjs           # Shared check runner
+  checks.json              # Your project-specific checks
+  manifest.json            # Managed-file hashes
+  INSTALLATION.md          # Adapter and runtime guidance
 .specs/
-  constitution.md         # Project standards and coordination rules
-  WORKFLOW.md             # Execution guidance
+  constitution.md          # Project standards and coordination
+  WORKFLOW.md               # Entry instructions
   features/001-user-auth/
-    spec.md               # Behavior and acceptance criteria
-    plan.md               # Architecture, API contracts and data model
-    tasks.md              # Dependencies, owners and file boundaries
-    verification.md       # Actual check results and review decision
+    spec.md
+    plan.md
+    tasks.md
+    verification.md
 ```
 
-### Agent hierarchy and execution
+`verify` checks documents for missing files, draft markers, placeholders, and failed/unrun outcome rows. It does **not** run application tests, confirm evidence is true, or grant approval. Record real commands and results in `verification.md` and review them separately. The workflow is inspired by spec-driven development; it is not a bundled installation of GitHub Spec Kit.
 
-The orchestrator coordinates product analyst -> architect -> frontend/backend developers -> QA -> integration. Database engineer, security reviewer and DevOps engineer participate when a feature affects their boundaries. Run `the-developer agents list` to list roles.
+## Hooks and checks
 
-Each definition includes inputs, ownership, deliverables, completion criteria and handoff rules. Agree on API schemas, errors and permissions before parallel frontend/backend implementation; give each file one owner. The orchestrator verifies the integrated result. Small fixes can use a short sequential plan instead of the complete process.
-
-Role files are portable instructions. Installing them does not register or launch native subagents on every platform. Ask your host assistant to read `.specs/WORKFLOW.md` and the orchestrator definition, then map roles to its delegation tools where supported and permitted. Otherwise it should execute the roles sequentially. No background agent processes or provider credentials are required by this CLI.
-
-### Specification stages
-
-`specify`, `plan`, and `tasks` create editable templates; they do not call an AI provider or generate architecture automatically. Fill the specification before planning, agree on the plan before assigning tasks, then implement and record actual validation evidence. `plan` requires an existing specification; `tasks` requires both specification and plan.
-
-`verify` checks for missing documents, draft markers, unresolved placeholders and failed/unrun outcome rows. It exits nonzero for unfinished scaffolds. It does **not** run application tests, validate the truth of evidence, or grant review approval. Run your project's real checks and review the recorded evidence separately.
-
-Workflow generation and skill installation refuse to overwrite differing existing files. Repeating an unchanged initialization is safe; edited files must be reconciled manually. No force-overwrite mode is provided. This workflow is inspired by spec-driven development and is not a bundled installation of GitHub Spec Kit.
-
----
-
-## ⚡ Installation & Multi-Agent Ecosystems
-
-`the-developer` works natively across all major AI coding environments. Use the `--target` flag to install the skills where your AI agent reads them:
-
-| AI Assistant / IDE | Target Directory | Install Flag |
-| :--- | :--- | :--- |
-| **Google Antigravity** *(default)* | `.agents/skills/` | `--target=antigravity` |
-| **Cursor IDE** | `.cursor/skills/` | `--target=cursor` |
-| **Claude Code** | `.claude/skills/` | `--target=claude` |
-| **Windsurf / Codeium** | `.windsurf/skills/` | `--target=windsurf` |
-| **GitHub Copilot** | `.github/skills/` | `--target=copilot` |
-| **All Platforms (Simultaneous)** | *All above directories* | `--target=all` or `--all` |
-
----
-
-### Option 1: Direct via `npx` (Recommended · Zero Install)
-Run directly from GitHub without installing anything to your project or machine:
-```bash
-# Default: installs to Google Antigravity (.agents/skills)
-npx github:FarooqProProgrammer/the-developer install
-
-# For Cursor IDE (.cursor/skills)
-npx github:FarooqProProgrammer/the-developer install --target=cursor
-
-# For Claude Code (.claude/skills)
-npx github:FarooqProProgrammer/the-developer install --target=claude
-
-# For Windsurf (.windsurf/skills)
-npx github:FarooqProProgrammer/the-developer install --target=windsurf
-
-# Install into ALL supported AI assistants at once:
-npx github:FarooqProProgrammer/the-developer install --all
-
-# Or into a specific directory/app with target flag:
-npx github:FarooqProProgrammer/the-developer install ./my-web-app --target=cursor
-```
-
-### Option 2: Project Dependency via `npm install`
-Add it as a dependency in your project:
-```bash
-# Using GitHub shorthand
-npm install github:FarooqProProgrammer/the-developer
-
-# Or using the full repository URL
-npm install https://github.com/FarooqProProgrammer/the-developer.git
-```
-Then run the setup CLI:
-```bash
-npx the-developer install --target=cursor
-# or
-npx the-developer install --all
-```
-
-### Option 3: Global System Installation
-Install globally on your machine so the `the-developer` CLI is always available everywhere:
-```bash
-npm install -g github:FarooqProProgrammer/the-developer
-
-# Now run anywhere in any terminal:
-the-developer install --target=cursor
-the-developer install --target=claude
-the-developer install --all
-the-developer list
-the-developer mcp
-```
-
-### Option 4: Standard npm Registry (If published)
-```bash
-npx the-developer install --all
-# or
-npm install -g the-developer
-```
-
----
-
-## 📦 What's Inside
-
-`the-developer` packages six interconnected skills and autonomous agents designed to eliminate generic "AI-slop" and produce tactile, production-ready frontend software:
-
-| Skill / Agent | Description | Key Disciplines |
-| :--- | :--- | :--- |
-| **`css-design-tokens`** | **Token-First Architecture (Step 1)** | Root CSS tokenization, perceptual OKLCH color roles, Tailwind v4 `@theme` compliance |
-| **`frontend-designer`** | Autonomous Frontend Architect subagent | Coordinates Hallmark, Tailwind, ASW UI/UX, Inspo, and Shadcn |
-| **`hallmark`** | Anti-AI-slop design system & auditor | Structural variation, honest copy, pre-emit critique, locked tokens |
-| **`micro-animation-interaction`** | Tactile physics & micro-interactions | Damped spring curves, GPU-only transforms, reduced-motion compliance |
-| **`scroll-craft`** | Scrollytelling & dimensional landing pages | Scroll as timeline, 8 page grammars, layered hero depth, self-verification |
-| **`tailwindcss`** | Modern utility-first CSS architecture | Breakpoints, theme variables, container queries, accessible states |
-
----
-
-## 🛠️ CLI Usage
-
-```bash
-# Install skills into current project
-npx the-developer install
-
-# Install skills into a specific directory
-npx the-developer install ./path/to/my-project
-
-# List all bundled skills and descriptions
-npx the-developer list
-
-# Inspect detailed instructions for a skill
-npx the-developer info hallmark
-npx the-developer info scroll-craft
-npx the-developer info micro-animation-interaction
-
-# View recommended MCP configurations
-npx the-developer mcp
-```
-
----
-
-## 🔌 Recommended MCP Server Configuration
-
-To unlock the full potential of the `frontend-designer` agent, add these servers to your `mcp_config.json` (or client settings):
+Edit `.developer/checks.json` to select actual project checks:
 
 ```json
 {
-  "mcpServers": {
-    "inspo": {
-      "serverUrl": "https://inspomcp.dev/api/mcp"
-    },
-    "stitch": {
-      "serverUrl": "https://stitch.googleapis.com/mcp",
-      "headers": {
-        "X-Goog-Api-Key": "YOUR_API_KEY_HERE"
-      }
-    },
-    "mobbin": {
-      "serverUrl": "https://api.mobbin.com/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_MOBBIN_TOKEN"
-      }
-    },
-    "shadcn": {
-      "command": "npx",
-      "args": ["shadcn@latest", "mcp"]
-    }
-  }
+  "commands": [
+    { "command": "npm", "args": ["test"], "cwd": ".", "timeoutMs": 30000 }
+  ]
 }
 ```
 
-*Note: Inspo MCP requires zero authentication and works out of the box with over 800+ real-world design systems!*
+The initial list is empty because the installer cannot infer a trustworthy test command for every project. Empty checks do no work and do not establish readiness. Execute manually or from CI:
 
----
+```bash
+node .developer/hooks/check.mjs
+```
 
-## 🚀 Publishing to npm
+The runner uses argument arrays without shell evaluation, restricts working directories to the project, and limits the total check time to 45 seconds. It suppresses subprocess output to avoid leaking credentials; rerun a failed command manually to diagnose it. Review commands before enabling them.
 
-To publish this package to the npm registry:
+Claude and current Codex Stop hooks report failures with exit code 2. A repeated stop-hook invocation exits without reblocking. Cursor stop hooks report failures on stderr but do not trigger automatic follow-up loops. Copilot CLI/cloud agent runs checks on session end and reports failures without a completion gate; IDE hook support varies. Windsurf and Antigravity receive the same runner for manual/CI invocation. No Git hooks are installed or existing user hooks removed.
 
-1. **Log in to npm** (one-time):
-   ```bash
-   npm login
-   ```
+## Development
 
-2. **Publish**:
-   ```bash
-   npm publish
-   ```
-   *(If publishing under a scoped name like `@farooqproprogrammer/the-developer`, use `npm publish --access public`)*.
+```bash
+npm test
+node bin/cli.mjs install /tmp/example-project --all --dry-run
+npm pack --dry-run
+```
 
----
+Tests cover adapters, all-target installation, repeatability, conflict protection, hook behavior, feature scaffolding, and the packaged CLI. The toolkit has no dependency-install or build step.
 
-## 📄 License
+## Optional MCP integrations
 
-MIT © [Farooq](https://github.com/FarooqProProgrammer)
+`the-developer mcp` prints suggested Inspo, Stitch, Mobbin and shadcn configurations. These integrations are optional and are not registered by the installer. Configure credentials securely in your assistant; never commit secret values.
+
+## Adapter references
+
+- [Claude subagents](https://code.claude.com/docs/en/sub-agents) and [hooks](https://code.claude.com/docs/en/hooks)
+- [Cursor subagents](https://cursor.com/docs/context/subagents) and [hooks](https://cursor.com/docs/agent/hooks)
+- [Copilot agent configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration)
+- [Copilot hooks](https://docs.github.com/en/copilot/reference/hooks-reference)
+- [Codex configuration schema](https://github.com/openai/codex/blob/main/codex-rs/core/config.schema.json)
+- [Windsurf workflows](https://docs.windsurf.com/windsurf/cascade/workflows)
+
+MIT © Farooq.
