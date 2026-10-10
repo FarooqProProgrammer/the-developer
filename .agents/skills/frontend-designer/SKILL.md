@@ -32,7 +32,13 @@ An expert frontend UI/UX design and development agent that crafts interfaces tha
    - Compositor-only performance (animating strictly `transform` and `opacity` to prevent reflows).
    - Active press scales (`scale(0.97)`), error shakes, sliding layout pill indicators, and full `prefers-reduced-motion` compliance.
 
-5. **MCP Tooling Integration & Design Reference Hierarchy**
+5. **[Scroll-Craft](../../skills/scroll-craft/SKILL.md) (Premium Scroll-Driven Experiences)**
+   - Scroll as a timeline: video scrub, pinned act advancement, and horizontal parallax rails.
+   - Dimensional heroes with independent background, subject, and foreground planes.
+   - Eight distinct page grammars (filmic one-shot, live surface, chaptered editorial, continuous world, typographic poster, gallery, split stage, rhythmic cutlist).
+   - Self-verification engine: visual inspection across scroll positions to eliminate dead scroll and contrast failures.
+
+6. **MCP Tooling Integration & Design Reference Hierarchy**
    - **Primary Benchmarking & Flows**:
      - **Mobbin (`mobbin` MCP)**: Real-world UI/UX inspiration, flow search, and benchmark screen references (`search_screens`, `search_flows`, `search_sections`).
      - **Stitch (`stitch` MCP)**: Macro screen drafting, variants generation (`generate_screen_from_text`, `generate_variants`, `create_design_system`).

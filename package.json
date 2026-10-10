@@ -1,0 +1,50 @@
+{
+  "name": "the-developer",
+  "version": "1.0.0",
+  "description": "Curated suite of AI agent skills and frontend design tools: Frontend-Designer, Hallmark, Tailwind CSS, Micro-Animations, Scroll-Craft, and Inspo MCP.",
+  "type": "module",
+  "main": "./bin/cli.mjs",
+  "bin": {
+    "the-developer": "./bin/cli.mjs",
+    "dev-skills": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    ".agents/skills/",
+    "skills-lock.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node bin/cli.mjs",
+    "test": "node bin/cli.mjs list",
+    "install:skills": "node bin/cli.mjs install"
+  },
+  "keywords": [
+    "ai-agent",
+    "agent-skills",
+    "antigravity",
+    "claude-code",
+    "cursor",
+    "frontend-design",
+    "hallmark",
+    "scroll-craft",
+    "tailwind",
+    "micro-animations",
+    "ui-ux",
+    "design-system"
+  ],
+  "author": "Farooq <https://github.com/FarooqProProgrammer>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FarooqProProgrammer/the-developer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FarooqProProgrammer/the-developer/issues"
+  },
+  "homepage": "https://github.com/FarooqProProgrammer/the-developer#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
