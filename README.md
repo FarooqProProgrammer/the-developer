@@ -85,10 +85,11 @@ npm install -g the-developer
 
 ## 📦 What's Inside
 
-`the-developer` packages five interconnected skills and autonomous agents designed to eliminate generic "AI-slop" and produce tactile, production-ready frontend software:
+`the-developer` packages six interconnected skills and autonomous agents designed to eliminate generic "AI-slop" and produce tactile, production-ready frontend software:
 
 | Skill / Agent | Description | Key Disciplines |
 | :--- | :--- | :--- |
+| **`css-design-tokens`** | **Token-First Architecture (Step 1)** | Root CSS tokenization, perceptual OKLCH color roles, Tailwind v4 `@theme` compliance |
 | **`frontend-designer`** | Autonomous Frontend Architect subagent | Coordinates Hallmark, Tailwind, ASW UI/UX, Inspo, and Shadcn |
 | **`hallmark`** | Anti-AI-slop design system & auditor | Structural variation, honest copy, pre-emit critique, locked tokens |
 | **`micro-animation-interaction`** | Tactile physics & micro-interactions | Damped spring curves, GPU-only transforms, reduced-motion compliance |

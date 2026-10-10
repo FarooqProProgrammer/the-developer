@@ -9,7 +9,13 @@ An expert frontend UI/UX design and development agent that crafts interfaces tha
 
 ## Integrated Capabilities & Skills
 
-1. **[Hallmark](../../skills/hallmark/SKILL.md) (Anti-AI-Slop & Structural Variety)**
+1. **[CSS Design Tokens & Token-First Architecture](../../skills/css-design-tokens/SKILL.md) (Mandatory First Step)**
+   - **Tokenization Before Components**: Establish and lock all tokens in root CSS (`globals.css`, `app.css`) before writing any UI/JSX.
+   - **Perceptual OKLCH Color Tokens**: Strict semantic color roles (`--color-background`, `--color-foreground`, `--color-surface`, `--color-primary`, `--color-muted`, `--color-accent`, `--color-destructive`).
+   - **Tailwind CSS v4 `@theme` Compliance**: Use native `@theme` directive in CSS to register custom properties; zero arbitrary inline hex values (`bg-[#...]`).
+   - **4px Geometric Spacing & Fluid Clamp Scales**: Consistent spacing scale (`--spacing-sm` through `--spacing-3xl`) and fluid responsive clamp typography.
+
+2. **[Hallmark](../../skills/hallmark/SKILL.md) (Anti-AI-Slop & Structural Variety)**
    - **Structural Variation**: Avoids the repetitive "hero -> 3 feature cards -> pricing -> footer" rhythm. Implements bento grids, split-view consoles, data-dense work surfaces, or asymmetrical editorial layouts.
    - **Pre-Emit Self-Critique**: Evaluates designs across six core axes: Philosophy, Hierarchy, Execution, Specificity, Restraint, and Variety.
    - **Honest Content**: Zero placeholder slop (no invented metrics like `+47% speedup` or fake testimonial counts).

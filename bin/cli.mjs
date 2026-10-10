@@ -14,6 +14,11 @@ const packageJson = JSON.parse(
 
 const SKILLS = [
   {
+    name: 'css-design-tokens',
+    description: 'Token-first architecture: defines locked OKLCH color roles, spacing scales, and Tailwind v4 @theme directives before UI components.',
+    folder: 'css-design-tokens'
+  },
+  {
     name: 'frontend-designer',
     description: 'Autonomous Frontend Architect agent synthesizing Hallmark, Tailwind, ASW UI/UX, and MCP tools.',
     folder: 'frontend-designer'
