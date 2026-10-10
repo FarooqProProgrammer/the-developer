@@ -1,10 +1,59 @@
 # the-developer
 
-> A curated suite of production-grade AI agent skills and design frameworks for modern frontend engineering.  
+> A toolkit for frontend and full-stack engineering, with design skills, portable agent roles, and spec-driven workflows.
 > Built for **Google Antigravity**, **Cursor**, **Claude Code**, and compatible agentic development tools.
 
 [![npm version](https://img.shields.io/npm/v/the-developer.svg)](https://www.npmjs.com/package/the-developer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## Full-stack workflow
+
+Initialize a project using the local checkout:
+
+```bash
+node /path/to/the-developer/bin/cli.mjs init ./my-project --preset=fullstack --target=cursor
+cd my-project
+node /path/to/the-developer/bin/cli.mjs specify 001-user-auth
+node /path/to/the-developer/bin/cli.mjs plan 001-user-auth
+node /path/to/the-developer/bin/cli.mjs tasks 001-user-auth
+node /path/to/the-developer/bin/cli.mjs verify 001-user-auth
+```
+
+After installing the package, use `the-developer` in place of the Node command. Commands also accept `--project=/path/to/project`. `init` defaults to the existing `frontend` preset and Antigravity target; the `fullstack` preset includes all six frontend skills plus nine role definitions and the project constitution.
+
+Generated structure (Cursor target shown):
+
+```text
+.cursor/
+  agents/                 # Nine portable role definitions
+  skills/                 # Existing frontend design skills
+.specs/
+  constitution.md         # Project standards and coordination rules
+  WORKFLOW.md             # Execution guidance
+  features/001-user-auth/
+    spec.md               # Behavior and acceptance criteria
+    plan.md               # Architecture, API contracts and data model
+    tasks.md              # Dependencies, owners and file boundaries
+    verification.md       # Actual check results and review decision
+```
+
+### Agent hierarchy and execution
+
+The orchestrator coordinates product analyst -> architect -> frontend/backend developers -> QA -> integration. Database engineer, security reviewer and DevOps engineer participate when a feature affects their boundaries. Run `the-developer agents list` to list roles.
+
+Each definition includes inputs, ownership, deliverables, completion criteria and handoff rules. Agree on API schemas, errors and permissions before parallel frontend/backend implementation; give each file one owner. The orchestrator verifies the integrated result. Small fixes can use a short sequential plan instead of the complete process.
+
+Role files are portable instructions. Installing them does not register or launch native subagents on every platform. Ask your host assistant to read `.specs/WORKFLOW.md` and the orchestrator definition, then map roles to its delegation tools where supported and permitted. Otherwise it should execute the roles sequentially. No background agent processes or provider credentials are required by this CLI.
+
+### Specification stages
+
+`specify`, `plan`, and `tasks` create editable templates; they do not call an AI provider or generate architecture automatically. Fill the specification before planning, agree on the plan before assigning tasks, then implement and record actual validation evidence. `plan` requires an existing specification; `tasks` requires both specification and plan.
+
+`verify` checks for missing documents, draft markers, unresolved placeholders and failed/unrun outcome rows. It exits nonzero for unfinished scaffolds. It does **not** run application tests, validate the truth of evidence, or grant review approval. Run your project's real checks and review the recorded evidence separately.
+
+Workflow generation and skill installation refuse to overwrite differing existing files. Repeating an unchanged initialization is safe; edited files must be reconciled manually. No force-overwrite mode is provided. This workflow is inspired by spec-driven development and is not a bundled installation of GitHub Spec Kit.
 
 ---
 

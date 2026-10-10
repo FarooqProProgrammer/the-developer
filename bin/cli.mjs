@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
+import { agentNames, parseWorkflowArgs, initFullstack, scaffold, verify } from './workflow.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -84,6 +85,9 @@ function printHelp() {
   console.log(`  npx the-developer <command> [options]\n`);
   console.log(`\x1b[1mCOMMANDS:\x1b[0m`);
   console.log(`  \x1b[32minstall [dir] [flags]\x1b[0m   Install skills into target ecosystem(s) (default: antigravity / .agents/skills)`);
+  console.log('  init [dir] --preset=frontend|fullstack [--target=cursor]');
+  console.log('  specify|plan|tasks|verify <feature> [--project=dir]');
+  console.log('  agents list                      List portable role definitions');
   console.log(`  \x1b[32mlist\x1b[0m                   List all available skills and descriptions`);
   console.log(`  \x1b[32minfo <skill>\x1b[0m           Display detailed documentation for a specific skill`);
   console.log(`  \x1b[32mmcp\x1b[0m                    Print recommended MCP server configurations (Inspo, Stitch, etc.)`);
@@ -134,6 +138,24 @@ function showSkillInfo(skillName) {
   console.log(content);
 }
 
+function checkCopy(src, dest) {
+  let current = path.resolve(dest);
+  while (true) {
+    if (fs.existsSync(current) && fs.lstatSync(current).isSymbolicLink()) throw new Error(`Refusing symlink: ${current}`);
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  if (fs.existsSync(dest) && !fs.statSync(dest).isDirectory()) throw new Error(`Expected directory: ${dest}`);
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    const source = path.join(src, entry.name), destination = path.join(dest, entry.name);
+    if (entry.isDirectory()) checkCopy(source, destination);
+    else if (fs.existsSync(destination) && (fs.lstatSync(destination).isSymbolicLink() || !fs.statSync(destination).isFile() || !fs.readFileSync(source).equals(fs.readFileSync(destination)))) {
+      throw new Error(`Existing file differs; refusing to overwrite ${destination}`);
+    }
+  }
+}
+
 function copyDirectory(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
   const entries = fs.readdirSync(src, { withFileTypes: true });
@@ -181,6 +203,13 @@ function installSkills(targetDir = process.cwd(), targets = ['antigravity']) {
   console.log(`Target Directory:  \x1b[36m${resolvedTargetBase}\x1b[0m`);
   console.log(`Ecosystem(s):      \x1b[32m${targetEcosystems.map((k) => ECOSYSTEM_TARGETS[k].label).join(', ')}\x1b[0m\n`);
 
+  // Validate every destination before copying any skill.
+  for (const ecoKey of targetEcosystems) {
+    for (const skill of SKILLS) {
+      const source = path.join(sourceSkillsDir, skill.folder);
+      if (fs.existsSync(source)) checkCopy(source, path.join(resolvedTargetBase, ECOSYSTEM_TARGETS[ecoKey].relPath, skill.folder));
+    }
+  }
   let totalInstalled = 0;
 
   for (const ecoKey of targetEcosystems) {
@@ -276,7 +305,30 @@ for (const arg of rawArgs) {
   }
 }
 
+try {
 switch (command) {
+  case 'init': {
+    const { options, positionals } = parseWorkflowArgs(rawArgs.slice(1));
+    if (positionals.length > 1) throw new Error('init accepts one project directory.');
+    const project = path.resolve(positionals[0] ?? options.project);
+    if (options.preset === 'fullstack') initFullstack(project, options.target);
+    installSkills(project, [options.target]);
+    break;
+  }
+  case 'agents':
+    if (rawArgs.length !== 2 || rawArgs[1] !== 'list') throw new Error('Usage: the-developer agents list');
+    console.log(agentNames.join('\n'));
+    break;
+  case 'specify':
+  case 'plan':
+  case 'tasks':
+  case 'verify': {
+    const { options, positionals } = parseWorkflowArgs(rawArgs.slice(1));
+    if (positionals.length !== 1) throw new Error(`${command} requires one feature name.`);
+    if (command === 'verify') verify(options.project, positionals[0]);
+    else scaffold(command, options.project, positionals[0]);
+    break;
+  }
   case 'install':
   case 'add':
     installSkills(parsedDir, targetList.length > 0 ? targetList : ['antigravity']);
@@ -305,4 +357,9 @@ switch (command) {
   default:
     printHelp();
     break;
+}
+
+} catch (error) {
+  console.error(`Error: ${error.message}`);
+  process.exitCode = 1;
 }

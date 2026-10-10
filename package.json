@@ -1,7 +1,7 @@
 {
   "name": "the-developer",
   "version": "1.0.0",
-  "description": "Curated suite of AI agent skills and frontend design tools: Frontend-Designer, Hallmark, Tailwind CSS, Micro-Animations, Scroll-Craft, and Inspo MCP.",
+  "description": "Portable frontend and full-stack agent roles, design skills, and spec-driven development workflows.",
   "type": "module",
   "main": "./bin/cli.mjs",
   "bin": {
@@ -13,11 +13,12 @@
     ".agents/skills/",
     "skills-lock.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "workflows/"
   ],
   "scripts": {
     "start": "node bin/cli.mjs",
-    "test": "node bin/cli.mjs list",
+    "test": "node --test",
     "install:skills": "node bin/cli.mjs install"
   },
   "keywords": [
