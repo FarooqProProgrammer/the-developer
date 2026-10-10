@@ -19,8 +19,8 @@ test('both presets work across all targets and fullstack initialization is repea
     pass('init', project, '--preset=fullstack', `--target=${target}`);
     const ecosystem = {antigravity:'.agents',cursor:'.cursor',claude:'.claude',windsurf:'.windsurf',copilot:'.github',codex:'.codex'}[target];
     if (target === 'antigravity' || target === 'windsurf') {
-      assert.equal(fs.readdirSync(path.join(project,ecosystem,'workflows')).filter(n => n.startsWith('role-')).length,9);
-    } else assert.equal(fs.readdirSync(path.join(project, ecosystem, 'agents')).length, 9);
+      assert.equal(fs.readdirSync(path.join(project,ecosystem,'workflows')).filter(n => n.startsWith('role-')).length,13);
+    } else assert.equal(fs.readdirSync(path.join(project, ecosystem, 'agents')).length, 13);
     assert.equal(fs.readdirSync(path.join(project, target === 'codex' ? '.agents' : ecosystem, 'skills')).length, 19);
     assert(fs.existsSync(path.join(project, '.specs/constitution.md')));
   }

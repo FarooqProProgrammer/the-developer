@@ -10,3 +10,12 @@ Agree on contracts before parallel work. Give each file one owner. Record depend
 
 ## Handoff records
 TODO: Completed tasks, changed files, test evidence, blockers and next owner.
+
+## Ordered checkpoints
+Use short checkpoint titles and bounded source/test paths. The reference is the specification for existing behavior. Start small and increase scope after earlier decisions are accepted.
+
+| Checkpoint | Short title | Source/test scope | Direct references | UI required? |
+| --- | --- | --- | --- | --- |
+| cp-001 | TODO: First small slice | TODO | TODO | yes |
+
+Use the checkpoint CLI for runtime state and gates; this task document does not grant approval.

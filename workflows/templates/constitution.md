@@ -19,3 +19,8 @@ One integration owner and one owner per file. Run roles sequentially unless the 
 
 ## Project decisions
 Record stack, build/test commands, data store, deployment target and conventions here before implementation.
+
+## Checkpoint standards
+Work in small ordered checkpoints, with direct references and documented architecture. Each checkpoint must pass behavior, applicable matched-state visual review, two independent isolated code reviews, and engineer approval before completion. Failed or invalid gates cannot be waived as "good enough". Source/reference changes invalidate existing evidence.
+
+Logic-only checkpoints omit the visual gate. Engineer-authorized autonomous mode waives only engineer approval; technical gates remain mandatory. Record accepted feedback and archive evidence. A completed checkpoint names its real implementation commit. Reviewer identity and isolation declarations must reflect actual execution, not merely different role names.

@@ -17,7 +17,7 @@ test('single command installs every host, skill, workflow, agent and hook runner
   assert(fs.existsSync(path.join(dir,'.github/agents/backend-developer.agent.md')));
   assert.match(fs.readFileSync(path.join(dir,'.codex/config.toml'),'utf8'),/\[agents.backend_developer\]/);
   assert.match(fs.readFileSync(path.join(dir,'.codex/agents/backend-developer.toml'),'utf8'),/^developer_instructions = /);
-  assert.equal(fs.readdirSync(path.join(dir,'.developer/agents')).length,9);
+  assert.equal(fs.readdirSync(path.join(dir,'.developer/agents')).length,13);
   assert.equal(fs.readdirSync(path.join(dir,'.developer/workflows')).length,6);
   assert.equal(json(dir,'.claude/settings.json').hooks.Stop.length,1);
   assert.equal(json(dir,'.cursor/hooks.json').hooks.stop.length,1);

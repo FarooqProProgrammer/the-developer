@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {
+      "id": "TODO-user-behavior",
+      "command": "TODO-test-executable",
+      "args": [],
+      "cwd": ".",
+      "timeoutMs": 30000
+    }
+  ]
+}

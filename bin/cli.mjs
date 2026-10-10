@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
+import { checkpointCommand, parseCheckpointArgs } from './checkpoints.mjs';
 import { installToolkit, platforms } from './installer.mjs';
 import { agentNames, parseWorkflowArgs, scaffold, verify } from './workflow.mjs';
 import path from 'node:path';
@@ -69,6 +70,7 @@ function printHelp() {
   console.log(`  \x1b[32minstall [dir] [flags]\x1b[0m   Install the full toolkit (default: antigravity; --all for every host)`);
   console.log('  init [dir] --preset=frontend|fullstack [--target=cursor]');
   console.log('  specify|plan|tasks|verify <feature> [--project=dir]');
+  console.log('  checkpoint <action> <feature> [id]  Enforce checkpoint gates');
   console.log('  targets                          Show host capabilities');
   console.log('  install [dir] --all [--dry-run]    All skills, agents, hooks and workflows');
   console.log('  agents list                      List portable role definitions');
@@ -168,6 +170,11 @@ switch (command) {
     const hasPreset = rawArgs.some(a => a === '--preset' || a.startsWith('--preset='));
     const preset = command === 'init' || hasPreset ? options.preset : 'fullstack';
     installToolkit(positionals[0] ?? options.project, options.target.split(','), preset, options.dryRun);
+    break;
+  }
+  case 'checkpoint': {
+    const { action, feature, id, options } = parseCheckpointArgs(rawArgs.slice(1));
+    checkpointCommand(options.project, action, feature, id, options);
     break;
   }
   case 'targets':

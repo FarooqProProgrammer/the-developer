@@ -9,3 +9,6 @@ Read the feature specification and technical plan. Map acceptance criteria to bo
 
 ## Completion evidence
 Report changed files, commands actually executed, outcomes, remaining limitations and next owner. Follow project instructions and `.specs/constitution.md`.
+
+## Convergence over large one-shot changes
+Use the Helix-inspired loop in `.developer/CHECKPOINTS.md`. Define small ordered slices with direct references. A test-designer prepares integration cases; behavior runs before scoped visuals, then two isolated adversarial reviews and actual engineer approval. Fix failed gates and rerun after source changes. Autonomous operation never weakens technical gates. Archive evidence and accepted feedback for the next slice.

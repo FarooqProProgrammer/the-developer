@@ -1,0 +1,17 @@
+{
+  "checkpoint": "TODO-checkpoint-id",
+  "revision": "TODO-current-revision-from-status",
+  "reviewer": "TODO-independent-reviewer",
+  "verdict": "failed",
+  "contextIsolated": false,
+  "standards": [".specs/architecture.md"],
+  "scope": ["TODO-built-section-only"],
+  "referenceState": "TODO-matched-state",
+  "implementationState": "TODO-matched-state",
+  "referenceScreenshot": "TODO-reference.png",
+  "implementationScreenshot": "TODO-implementation.png",
+  "findings": [
+    {"location": "TODO-file-or-screen-location", "severity": "medium", "detail": "TODO-observed-difference", "status": "open"}
+  ],
+  "note": "TODO-review-summary"
+}

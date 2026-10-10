@@ -1,6 +1,6 @@
 # the-developer
 
-A full-stack development toolkit with 13 engineering and design skills, nine agent roles, six workflow stages, and configurable lifecycle checks. No runtime npm dependencies; Node.js 18 or newer is required.
+A full-stack development toolkit with 13 engineering and design skills, 13 agent roles, six workflow stages, and configurable lifecycle checks. No runtime npm dependencies; Node.js 18 or newer is required.
 
 ## Install everything with one command
 
@@ -64,6 +64,9 @@ orchestrator
   product-analyst -> architect
     frontend-developer + backend-developer
     database-engineer (when persistence changes)
+  test-designer -> executable behavior cases
+  visual-reviewer -> matched-state UI review (when applicable)
+  code-reviewer-a + code-reviewer-b -> independent adversarial reviews
   qa-engineer -> integrated review
   security-reviewer (when trust boundaries change)
   devops-engineer (when runtime or delivery changes)
@@ -105,6 +108,32 @@ After each scaffold stage, fill in the generated document before moving forward.
 
 `verify` checks documents for missing files, draft markers, placeholders, and failed/unrun outcome rows. It does **not** run application tests, confirm evidence is true, or grant approval. Record real commands and results in `verification.md` and review them separately. The workflow is inspired by spec-driven development; it is not a bundled installation of GitHub Spec Kit.
 
+## Helix-inspired checkpoints and gates
+
+The [Shopify Helix article](https://shopify.engineering/helix) explains why small, reviewed checkpoints converge more reliably than one large generated implementation. This toolkit now applies that loop to full-stack work:
+
+1. Define a small checkpoint with direct reference files and documented architecture.
+2. Run executable user-behavior cases, including edge cases.
+3. For UI work, review matched reference/implementation screenshots within the built scope. Mismatched states are invalid.
+4. Obtain two independent, context-isolated code reviews; every open finding blocks a pass.
+5. Record actual engineer approval, commit the reviewed code, and complete the checkpoint before starting the next.
+
+```bash
+the-developer checkpoint add 001-auth cp-001 \
+  --title="Login validation" --author=backend-implementer \
+  --scope=src/auth,tests/auth \
+  --reference=docs/auth-reference.md,.specs/architecture.md --logic-only
+
+the-developer checkpoint run 001-auth cp-001 --checks=.specs/features/001-auth/cases.json
+the-developer checkpoint status 001-auth cp-001
+```
+
+Import review evidence with `checkpoint review --gate=visual|review-a|review-b --evidence=path.json`. Use `checkpoint approve --by=engineer --note="..."` only after actual approval. `checkpoint complete --commit=SHA` requires all applicable gates and a commit matching the reviewed code. Source, reference and behavior-manifest changes invalidate existing results. Evidence and review feedback are archived per feature.
+
+Manual engineer approval is the default. An engineer can explicitly authorize `checkpoint policy 001-auth --approval=autonomous --by=engineer`; it waives only engineer approval, never the technical gates. Logic-only checkpoints skip only visual review. Different reviewer names are not proof of independent contexts; host assistants must provide real isolation. The CLI does not launch models or authenticate identities.
+
+Fill `.specs/architecture.md` with your project's standards. Full command examples, evidence schemas, memory behavior and limitations are in [CHECKPOINTS.md](workflows/CHECKPOINTS.md); the installer copies it into `.developer/`. [HELIX-NOTES.md](workflows/HELIX-NOTES.md) maps the article's ideas to the implementation and explains what is not automated.
+
 ## Hooks and checks
 
 Edit `.developer/checks.json` to select actual project checks:
@@ -135,7 +164,7 @@ node bin/cli.mjs install /tmp/example-project --all --dry-run
 npm pack --dry-run
 ```
 
-Tests cover adapters, all-target installation, repeatability, conflict protection, hook behavior, feature scaffolding, and the packaged CLI. The toolkit has no dependency-install or build step.
+Tests cover adapters, all-target installation, repeatability, conflict protection, hook behavior, feature scaffolding, checkpoint ordering, gate failures, stale evidence, independent reviews, feedback memory, and the packaged CLI. The toolkit has no dependency-install or build step.
 
 ## Optional MCP integrations
 
