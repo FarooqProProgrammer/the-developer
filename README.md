@@ -27,7 +27,7 @@ the-developer install
 
 ## 📦 What's Inside
 
-`the-developer` packages six interconnected skills and autonomous agents designed to eliminate generic "AI-slop" and produce tactile, production-ready frontend software:
+`the-developer` packages five interconnected skills and autonomous agents designed to eliminate generic "AI-slop" and produce tactile, production-ready frontend software:
 
 | Skill / Agent | Description | Key Disciplines |
 | :--- | :--- | :--- |
@@ -36,7 +36,6 @@ the-developer install
 | **`micro-animation-interaction`** | Tactile physics & micro-interactions | Damped spring curves, GPU-only transforms, reduced-motion compliance |
 | **`scroll-craft`** | Scrollytelling & dimensional landing pages | Scroll as timeline, 8 page grammars, layered hero depth, self-verification |
 | **`tailwindcss`** | Modern utility-first CSS architecture | Breakpoints, theme variables, container queries, accessible states |
-| **`agy-delegate`** | Background Antigravity agent runner | Autonomous task delegation, diff review, and patch integration |
 
 ---
 

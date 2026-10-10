@@ -37,11 +37,6 @@ const SKILLS = [
     name: 'tailwindcss',
     description: 'Tailwind CSS utility architecture, responsive breakpoints, and theme configuration.',
     folder: 'tailwindcss'
-  },
-  {
-    name: 'agy-delegate',
-    description: 'Antigravity background delegate runner for autonomous task execution and review.',
-    folder: 'agy-delegate'
   }
 ];
 
