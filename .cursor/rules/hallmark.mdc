@@ -1,0 +1,44 @@
+---
+description: Anti-AI-slop frontend design. Hard bans on generic LLM UI aesthetics. Load the hallmark skill for build/audit/redesign/study.
+globs:
+  - "**/*.{tsx,jsx,vue,svelte,css,scss,html}"
+  - "**/components/**"
+  - "**/app/**"
+  - "**/pages/**"
+alwaysApply: true
+---
+
+# Hallmark — no AI-looking UI
+
+When designing or editing frontend UI, refuse generic LLM aesthetics. Prefer craft that feels intentional and brand-specific.
+
+For full protocol (themes, macrostructures, slop-test, study/audit/redesign), read and follow the `hallmark` skill at `.cursor/skills/hallmark/SKILL.md`.
+
+## Hard bans (never ship)
+
+1. **Purple/indigo gradient heroes** — no purple→blue/pink gradients, no glow blobs as the main idea
+2. **Default fonts as display** — never Inter, Roboto, Open Sans, Arial, or system-ui for display; pair a distinctive display face with a refined body
+3. **Centered everything** — bias the layout; break symmetry on purpose
+4. **Icon-tile feature cards** — no rounded card + colored icon square + 2-line title + 3-line blurb + "Learn more →"
+5. **AI nav chrome** — no wordmark-left / links-center / CTA-right sticky hairline nav as the default
+6. **Gradient pill CTAs** — solid fill or outline, single hue
+7. **Sparkle/emoji badges** — use a real icon set or nothing
+8. **Invented metrics** — no fake "10×", "50k teams", Trustpilot stars unless the user supplied them
+9. **Italic display headers** — headings stay roman; italic only in body emphasis
+10. **Cards in heroes** — no card chrome in the first viewport unless it is the interaction surface
+
+## Required craft
+
+- One clear visual direction; OKLCH tokens; one anchor hue; accent under ~5%
+- Named spacing scale (multiples of 4)
+- Asymmetric layout bias over template centering
+- Real imagery / product context over decorative abstract gradients
+- Motion: exponential ease-out + `prefers-reduced-motion` alternative
+- Mobile: no horizontal scroll at 320–768px
+
+## Verbs
+
+- Default build → follow hallmark Design flow
+- `hallmark audit` → punch list only, no edits
+- `hallmark redesign` → new structure, same content/brand
+- `hallmark study` → extract DNA from URL/screenshot, never copy pixels
